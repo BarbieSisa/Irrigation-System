@@ -1,0 +1,95 @@
+body {
+  padding-top: 56px;
+  /* Height of the fixed-top navbar */
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-link.selected {
+  background-color: #212529; /* Set your desired background color */
+  color: #ffffff; /* Set your desired text color */
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  width: 80%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Loader animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader .spinner {
+  border: 4px solid #212529;; /* Loader color */
+  border-top: 4px solid transparent; /* Make a transparent top border to create a spinner effect */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite; /* Apply the spin animation */
+}
+
+.fixed-filter {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  width: 100%;
+  z-index: 1000; /* Adjust the z-index as needed */
+  top: 56px;
+}
+
+.main-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 901;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+body {
+  padding-top: 56px; /* Adjust this value based on your top bar height */
+}
+
+.sidebar {
+  position: fixed;
+  top: 56px; /* Adjust this value based on your top bar height */
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+}
+
+.main-content {
+  margin-left: 220px; /* Adjust this value based on your sidebar width */
+  padding: 15px;
+}

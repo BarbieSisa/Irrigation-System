@@ -1,0 +1,34 @@
+  	<main>
+  	  <section class="login-main-content">
+  	    <div class="container center-container login-container">
+  	      <div class="row justify-content-center">
+  	        <div class="col-md-6">
+  	          <div class="card">
+  	            <div class="card-header">
+  	              Login
+  	            </div>
+  	            <div class="card-body">
+  	              <form class="form-signin" role="form" data-bs-toggle="validator">
+  	                <div class="form-group">
+  	                  <label for="username">Username:</label>
+  	                  <Input @type="email" @value={{this.email}} class="form-control" required="true" autofocus=""
+  	                    id="email" disabled={{this.isBusy}} placeholder="Enter email" name="email" />
+  	                  <div class="invalid-feedback">Field is required</div>
+  	                </div>
+  	                <div class="form-group">
+  	                  <label for="password">Password:</label>
+  	                  <Input @type={{if this.showPassword "text" "password"}} @value={{mut this.password}}
+  	                    class="form-control" required="true" autofocus="" id="pwd" disabled={{this.isBusy}}
+  	                    placeholder="Enter password" name="pwd" />
+  	                  <div class="invalid-feedback">Field is required</div>
+  	                </div>
+  	                <div style="margin-top:20px" class="btn btn-primary"
+  	                  onclick={{unless this.session.isAuthenticated (action "login")}}>Login</div>
+  	              </form>
+  	            </div>
+  	          </div>
+  	        </div>
+  	      </div>
+  	    </div>
+  	  </section>
+  	</main>
