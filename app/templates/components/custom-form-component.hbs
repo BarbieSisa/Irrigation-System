@@ -1,0 +1,25 @@
+    <div class="col-md-{{this.columnSize}}">
+        {{#if (is-equal this.componentType 'select')}}
+            <select class="validation-ignore form-select {{this.cssClass}}" value={{this.value}} onchange={{action 'onNewSelectChange'}} disabled={{this.disabled}} required={{this.required}}>
+                {{#unless this.hidePrompt}}
+                    <option value={{null}}>No selection</option>
+                {{/unless}}
+                {{yield}}
+            </select>
+        {{else}}
+            <Input 
+            @type={{this.componentType}} 
+            @value={{this.value}} 
+            placeholder={{this.placeHolder}} 
+            class="form-control {{this.cssClass}}" 
+            onkeydown={{action 'onRawInputChange'}} 
+            disabled={{this.disabled}}
+            required={{this.required}}
+            pattern={{this.pattern}} 
+            step={{this.step}} 
+            min={{this.min}} 
+            max={{this.max}}
+            minlength={{this.minlength}} 
+            maxlength={{this.maxlength}}/>
+        {{/if}}
+    </div>

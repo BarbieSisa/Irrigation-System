@@ -10,5 +10,6 @@ export default class IndexRoute extends BaseRoute {
       return;
     }
     await this.currentUser.setup();
+    await this.activeRouteTracker.setup();
   }
 }

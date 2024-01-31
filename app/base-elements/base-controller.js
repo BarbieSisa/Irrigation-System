@@ -5,4 +5,5 @@ export default class BaseController extends Controller {
   @service('current-user') currentUser;
   @service('custom-fetch') customFetch;
   @service('store') store;
+  @service('active-route-tracker') activeRouteTracker;
 }

@@ -6,4 +6,5 @@ export default class BaseComponent extends Component {
   @service('custom-fetch') customFetch;
   @service store;
   @service router;
+  @service('active-route-tracker') activeRouteTracker;
 }

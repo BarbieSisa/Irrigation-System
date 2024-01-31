@@ -1,0 +1,40 @@
+<header class="fixed-filter">
+    <h3>My Devices</h3>
+    <div class="row">
+        <CustomFormComponent 
+        @columnSize={{3}} 
+        @cssClass="mb-3 mt-3" 
+        @componentType="text" 
+        @value={{this.searchText}} 
+        @placeHolder="Search" 
+        @onChange={{action 'makeRequestOnFieldChange'}}/>
+
+        <CustomFormComponent 
+        @columnSize={{3}} 
+        @cssClass="mb-3 mt-3" 
+        @componentType="select" 
+        @value={{this.searchText}} 
+        @placeHolder="Search" 
+        @onChange={{action 'makeRequestOnFieldChange'}}>
+            <option value={{1}}>Test 1</option>
+            <option value={{2}}>Test 2</option>
+        </CustomFormComponent>
+    </div>
+</header>
+
+<section style="margin-top: 65px;">
+    <div>
+        <ul>
+            {{#each this.loadedItems as |device index|}}
+                <Devices::ListItemComponent 
+                @device={{device}} 
+                @index={{index}} 
+                @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
+                @onShouldLoadNextPage={{action 'loadNextPage'}}/>
+            {{/each}}
+        </ul>
+        {{#if this.requestLoading}}
+            <LoaderComponent/>
+        {{/if}}
+    </div>
+</section>

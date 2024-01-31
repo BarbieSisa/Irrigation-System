@@ -4,6 +4,7 @@ export default class BaseModel extends Model {
   @service('store') store;
   @service('base-functions') baseFunctions;
   @service('current-user') currentUser;
+  @service('active-route-tracker') activeRouteTracker;
   
   customUnloadRecord() {
     try {

@@ -5,7 +5,7 @@
             <div class="position-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active">
+                        <a class="nav-link active {{if (is-equal this.activeRouteTracker.activeRouteName 'home.devices.index') 'selected'}}" {{action this.onGoto 'home.devices.index'}}>
                             Devices
                         </a>
                     </li>
