@@ -1,6 +1,6 @@
-<Menus::TopBarComponent @onLogout={{action 'logout'}}/>
+<Menus::TopBarComponent @onLogout={{action 'logout'}} @onRouteChange={{action 'onRouteChange'}}/>
 
-<Menus::SideBarComponent>
+<Menus::SideBarComponent @onRouteChange={{action 'onRouteChange'}}>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
         {{outlet}}
     </main>

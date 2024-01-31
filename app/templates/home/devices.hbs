@@ -1,0 +1,13 @@
+<!-- app/templates/device-list.hbs -->
+<h1>Device List</h1>
+
+{{#if this.model.length}}
+  <ul>
+    {{#each this.model as |device|}}
+      <li>{{device.deviceName}} - {{device.serialNumber}}</li>
+      {{! Add more properties as needed }}
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No devices available.</p>
+{{/if}}

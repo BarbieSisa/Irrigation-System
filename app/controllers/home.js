@@ -14,4 +14,9 @@ export default class HomeController extends BaseController {
     await this.session.invalidate();
     this.currentUser.loggedUser = null;
   }
+  @action
+   onRouteChange(route)
+   {
+      this.router.transitionTo(route);
+   }
 }
