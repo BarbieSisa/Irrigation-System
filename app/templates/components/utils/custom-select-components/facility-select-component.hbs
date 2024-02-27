@@ -1,0 +1,15 @@
+<Utils::CustomSelectComponents::EntitySelectComponentWrap 
+@disabled={{this.disabled}} 
+@required={{this.required}} 
+@onClear={{action "clear"}} 
+@requestLoading={{this.requestLoading}} 
+@loadedItems={{this.loadedItems}} 
+@onSelectItem={{action "selectItem"}} 
+@searchText={{readonly this.searchText}} 
+@onSearchTextChange={{action 'makeRequestOnSearchTextChange'}} 
+@lastAvailableItemIndex={{this.lastAvailableItemIndex}}
+@onShouldLoadNextPage={{action 'loadNextPage'}}
+@onOpen={{action "refresh"}} 
+@label={{readonly this.selectedItem.facilityName}} 
+@placeholder="Select Facility" 
+@displayMember="facilityName" />

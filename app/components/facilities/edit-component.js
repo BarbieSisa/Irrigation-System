@@ -8,6 +8,15 @@ export default class FacilitiesEditComponent extends BaseComponent {
     this.facilityName = this.model.facilityName;
   }
 
+  willDestroyElement() {
+    super.willDestroyElement(...arguments);
+    try {
+      this.store.removeAllNew_NewMethod();
+    } catch (error) {
+      
+    }
+  }
+
   @action
   save(){
     this.model.facilityName = this.facilityName;

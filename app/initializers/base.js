@@ -85,6 +85,16 @@ export function initialize() {
       return defVal || null;
     }
   };
+
+  window.getObject = function(obj){
+    if(obj && obj.constructor && obj.constructor.modelName){
+      return obj;
+    }
+    if(obj && obj.content !== undefined){
+      return obj.content;
+    }
+    return obj;
+  };
 }
 export default {
   name: 'utils',

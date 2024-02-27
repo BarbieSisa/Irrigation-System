@@ -28,6 +28,6 @@ export default class DevicesListItemComponent extends BaseComponent {
 
   @action
   gotoDevice(deviceId){
-    this.router.transitionTo('home.devices.view', deviceId);
+    this.router.transitionTo('home.devices.edit', deviceId);
   }
 }

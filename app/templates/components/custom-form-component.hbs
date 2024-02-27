@@ -1,4 +1,9 @@
     <div class="col-md-{{this.columnSize}}">
+        {{#if this.label}}
+            <label class="control-label" for={{this.componentId}}>
+                <span class="txt-bold">{{this.label}}</span>
+            </label>
+        {{/if}}
         {{#if (is-equal this.componentType 'select')}}
             <select class="validation-ignore form-select {{this.cssClass}}" value={{this.value}} onchange={{action 'onNewSelectChange'}} disabled={{this.disabled}} required={{this.required}}>
                 {{#unless this.hidePrompt}}
@@ -6,12 +11,19 @@
                 {{/unless}}
                 {{yield}}
             </select>
+        {{else if (is-equal this.componentType 'facility')}} 
+            <Utils::CustomSelectComponents::FacilitySelectComponent 
+            @value={{mut this.value}} 
+            @onChange={{this.onChange}} 
+            @disabled={{this.disabled}} 
+            @required={{this.required}} /> 
         {{else}}
             <Input 
             @type={{this.componentType}} 
             @value={{this.value}} 
             placeholder={{this.placeHolder}} 
             class="form-control {{this.cssClass}}" 
+            name={{this.name}}
             onkeydown={{action 'onRawInputChange'}} 
             disabled={{this.disabled}}
             required={{this.required}}
@@ -20,6 +32,9 @@
             min={{this.min}} 
             max={{this.max}}
             minlength={{this.minlength}} 
-            maxlength={{this.maxlength}}/>
+            maxlength={{this.maxlength}}
+            data-match-error={{this.data-match-error}} 
+            data-match="{{this.data-match}}"
+            autocomplete="off"/>
         {{/if}}
     </div>

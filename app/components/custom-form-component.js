@@ -1,8 +1,13 @@
+import Ember from 'ember';
 import BaseComponent from 'irrigation-system/base-elements/base-component';
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
 export default class CustomFormComponent extends BaseComponent {
   tagName = '';
-
+  @computed()
+  get componentId(){
+    return Ember.uuid();
+  }
+  
   @action
   onNewSelectChange(event) {
     this.value = event.target.value;

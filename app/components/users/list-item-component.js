@@ -28,6 +28,6 @@ export default class UsersListItemComponent extends BaseComponent {
 
   @action
   gotoUser(userId){
-    this.router.transitionTo('home.users.view', userId);
+    this.router.transitionTo('home.users.edit', userId);
   }
 }

@@ -1,0 +1,54 @@
+  {{#if this.disabled}}
+    {{or this.label this.prompt this.placeholder}}
+  {{else if this.isOpened}}
+    <input class='form-control'
+     type="text"
+     name="entity" 
+     value={{readonly this.searchText}}  
+     onkeyup={{action 'onKeyUp'}} 
+     onkeydown={{action 'onKeyDown'}}/>
+  {{else}}
+    <div class="form-control" onclick={{action "open"}}>{{or this.label this.prompt this.placeholder}}</div>
+  {{/if}}
+
+  {{#unless this.disabled}}
+    <span class="input-group-btn">
+      {{#if this.isOpened}}
+        <button class="btn btn-default btn-clean" type="button" onclick={{action "close"}}>
+          <span class="ficon ficon-arrow-up3 mr-0"></span>
+        </button>
+      {{else if this.label}}
+        <button class="btn btn-default btn-clean" type="button" onclick={{action this.onClear}}>
+          <span class="ficon ficon-cross mr-0"></span>
+        </button>
+      {{else}}
+        <button class="btn btn-default btn-clean" type="button" onclick={{action "open"}}>
+          <span class="ficon ficon-arrow-down3 mr-0"></span>
+        </button>
+      {{/if}}
+    </span>
+  {{/unless}}
+
+  <ul class="autocomplete-list list ver filter-scroll-target">
+    {{#if this.isOpened}}
+      {{#each this.loadedItems as |item index|}}
+        <Utils::CustomSelectComponents::EntitySelectItemComponent 
+          @lastAvailableItemIndex={{this.lastAvailableItemIndex}} 
+          @onShouldLoadNextPage={{this.onShouldLoadNextPage}} 
+          @text={{get item this.displayMember}} 
+          @index={{index}} 
+          @selectedItemIdx={{readonly this.selectedItemIdx}} 
+          @onSelect={{action "selectItem" item}} 
+          @onHover={{action (mut this.selectedItemIdx) index}} />
+      {{else}}
+        {{#unless this.requestLoading}}
+          <li>
+            No results
+          </li>
+        {{/unless}}
+      {{/each}}
+      {{#if this.requestLoading}}
+        <LoaderComponent @smallLoader={{true}}/>
+      {{/if}}
+    {{/if}}
+  </ul>

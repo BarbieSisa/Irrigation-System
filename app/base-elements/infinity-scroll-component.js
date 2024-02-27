@@ -9,9 +9,13 @@ export default class InfinityScrollComponent extends BaseComponent {
   @tracked pageNumber = 1;
   @tracked sleepHandler;
 
+  makeRequestOnInit = true;
+
   init() {
     super.init(...arguments)
-    this.makeRequest();
+    if (this.makeRequestOnInit) {
+      this.makeRequest();
+    }
   };
 
   willDestroyElement() {
