@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 export default class IndexRoute extends BaseRoute {
   @service session;
   @service('current-user') currentUser;
+  @service('device-type') deviceTypes;
 
   async beforeModel(){
     if (!this.session.isAuthenticated) {
@@ -10,6 +11,7 @@ export default class IndexRoute extends BaseRoute {
       return;
     }
     await this.currentUser.setup();
+    await this.deviceTypes.setup();
     await this.activeRouteTracker.setup();
   }
 }

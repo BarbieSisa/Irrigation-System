@@ -4,9 +4,21 @@
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
             <div class="position-sticky">
                 <ul class="nav flex-column">
+                    {{#unless (is-equal this.currentUser.loggedUser.userRoles.firstObject.roleType this.roleTypes.USER_ROLE_CUSTOMER)}}
+                        <li class="nav-item">
+                            <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.users') 'selected'}}" {{action this.onGoto 'home.users.index'}}>
+                                Users
+                            </a>
+                        </li>
+                    {{/unless}}
                     <li class="nav-item">
-                        <a class="nav-link active {{if (is-equal this.activeRouteTracker.activeRouteName 'home.devices.index') 'selected'}}" {{action this.onGoto 'home.devices.index'}}>
+                        <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.devices') 'selected'}}" {{action this.onGoto 'home.devices.index'}}>
                             Devices
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.facilities') 'selected'}}" {{action this.onGoto 'home.facilities.index'}}>
+                            Facilities
                         </a>
                     </li>
                     <!-- Add more sidebar items as needed -->

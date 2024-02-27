@@ -1,0 +1,49 @@
+<header class="fixed-filter">
+    <div class="row mt-05">
+        <div class="col-md-8">
+            <h3>{{if this.model.userId 'Edit' 'Create'}} User</h3>
+        </div>
+        <div class="ml-50 col-md-1" style="display: flex;">
+            <button type="button" class="btn btn-primary" {{action 'save'}}>Save</button>
+            <button type="button" class="btn btn-primary ml-05" {{action 'cancel'}}>Cancel</button>
+        </div>
+    </div>
+</header>
+
+<section style="margin-top: 75px;">
+    <div class="row">
+        <CustomFormComponent 
+        @columnSize={{4}} 
+        @cssClass="mb-3 mt-3" 
+        @max="45"
+        @componentType="text" 
+        @value={{this.firstName}} 
+        @placeHolder="User name" />
+
+        <CustomFormComponent 
+        @columnSize={{4}} 
+        @cssClass="mb-3 mt-3" 
+        @max="45"
+        @componentType="text" 
+        @value={{this.lastName}} 
+        @placeHolder="User name" />
+    </div>
+
+    <div class="row">
+        <CustomFormComponent 
+        @columnSize={{4}} 
+        @cssClass="mb-3 mt-3" 
+        @max="45"
+        @componentType="email" 
+        @value={{this.email}} 
+        @placeHolder="Email" />
+
+        <CustomFormComponent 
+        @columnSize={{4}} 
+        @cssClass="mb-3 mt-3" 
+        @max="45"
+        @componentType="password" 
+        @value={{this.password}} 
+        @placeHolder="Password" />
+    </div>
+</section>

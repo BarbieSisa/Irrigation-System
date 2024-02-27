@@ -7,4 +7,5 @@ export default class BaseComponent extends Component {
   @service store;
   @service router;
   @service('active-route-tracker') activeRouteTracker;
+  @service('role-type') roleTypes;
 }

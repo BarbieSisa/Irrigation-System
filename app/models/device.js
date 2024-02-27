@@ -20,6 +20,7 @@ export default class DeviceModel extends BaseModel {
   }) deviceAttributes;    
     
   @belongsTo('device-type', { async: true, inverse: null }) deviceType;    
+  @belongsTo('facility', { async: true, inverse: 'devices' }) facility;    
 
   @computed('deviceName', 'serialNumber')    
   get deviceNameAndSerialNumber() {    

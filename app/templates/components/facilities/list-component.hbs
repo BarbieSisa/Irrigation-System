@@ -1,10 +1,10 @@
 <header class="fixed-filter">
     <div class="row">
         <div class="col-md-9">
-            <h3>Devices</h3>
+            <h3>Facilities</h3>
         </div>
         <div class="col-md-1">
-            <button type="button" class="btn btn-primary mt-05" {{action 'createDevice'}}>Create</button>
+            <button type="button" class="btn btn-primary mt-05" {{action 'createFacility'}}>Create</button>
         </div>
     </div>
     <div class="row">
@@ -21,9 +21,9 @@
 <section style="margin-top: 75px;">
     <div>
         <ul>
-            {{#each this.loadedItems as |device index|}}
-                <Devices::ListItemComponent 
-                @device={{device}} 
+            {{#each this.loadedItems as |facility index|}}
+                <Facilities::ListItemComponent 
+                @facility={{facility}} 
                 @index={{index}} 
                 @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
                 @onShouldLoadNextPage={{action 'loadNextPage'}}/>

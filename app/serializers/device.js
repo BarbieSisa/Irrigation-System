@@ -4,5 +4,6 @@ export default class DeviceSerializer extends AppSerializer{
   attrs = {
     deviceAttributes: { embedded: 'always' },
     deviceType: { serialize:'ids',deserialize:'records' },
+    facility: { serialize:'ids',deserialize:'records' },
   }
 };

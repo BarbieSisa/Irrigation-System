@@ -19,7 +19,7 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
     if (snapshot.adapterOptions && snapshot.adapterOptions.hasOwnProperty('endPoint')) {
       endPoint = snapshot.adapterOptions.endPoint;
     } else {
-      endPoint = camelize(inflector.pluralize(snapshot.modelName));
+      endPoint = camelize(this.inflector.pluralize(snapshot.modelName));
     }
 
     if(snapshot.adapterOptions && snapshot.adapterOptions.includeId!=null){
