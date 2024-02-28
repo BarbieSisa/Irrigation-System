@@ -11,25 +11,7 @@
     <div class="form-control" onclick={{action "open"}}>{{or this.label this.prompt this.placeholder}}</div>
   {{/if}}
 
-  {{#unless this.disabled}}
-    <span class="input-group-btn">
-      {{#if this.isOpened}}
-        <button class="btn btn-default btn-clean" type="button" onclick={{action "close"}}>
-          <span class="ficon ficon-arrow-up3 mr-0"></span>
-        </button>
-      {{else if this.label}}
-        <button class="btn btn-default btn-clean" type="button" onclick={{action this.onClear}}>
-          <span class="ficon ficon-cross mr-0"></span>
-        </button>
-      {{else}}
-        <button class="btn btn-default btn-clean" type="button" onclick={{action "open"}}>
-          <span class="ficon ficon-arrow-down3 mr-0"></span>
-        </button>
-      {{/if}}
-    </span>
-  {{/unless}}
-
-  <ul class="autocomplete-list list ver filter-scroll-target">
+  <ul class="{{if this.isOpened 'autocomplete-list'}}">
     {{#if this.isOpened}}
       {{#each this.loadedItems as |item index|}}
         <Utils::CustomSelectComponents::EntitySelectItemComponent 
@@ -42,9 +24,7 @@
           @onHover={{action (mut this.selectedItemIdx) index}} />
       {{else}}
         {{#unless this.requestLoading}}
-          <li>
-            No results
-          </li>
+          No results
         {{/unless}}
       {{/each}}
       {{#if this.requestLoading}}

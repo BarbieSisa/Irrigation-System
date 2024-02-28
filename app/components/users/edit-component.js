@@ -29,6 +29,12 @@ export default class UsersEditComponent extends BaseComponent {
 
   @action
   save(){
+    let formIsValid = window.formIsValid({
+      selector: ".save-user-form"
+    });
+    if (!formIsValid) {
+      return;
+    }
     this.model.set('person.firstName', this.firstName);
     this.model.set('person.lastName', this.lastName);
     this.model.set('user.email', this.email);

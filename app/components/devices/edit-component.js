@@ -24,6 +24,12 @@ export default class DevicesEditComponent extends BaseComponent {
 
   @action
   save(){
+    let formIsValid = window.formIsValid({
+      selector: ".save-device-form"
+    });
+    if (!formIsValid) {
+      return;
+    }
     this.model.serialNumber = this.serialNumber;
     this.model.deviceName = this.deviceName;
     this.model.facility = this.store.peekRecord('facility', this.facilityId);

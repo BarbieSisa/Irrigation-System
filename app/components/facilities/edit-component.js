@@ -19,6 +19,12 @@ export default class FacilitiesEditComponent extends BaseComponent {
 
   @action
   save(){
+    let formIsValid = window.formIsValid({
+      selector: ".save-facility-form"
+    });
+    if (!formIsValid) {
+      return;
+    }
     this.model.facilityName = this.facilityName;
     let options = null;
     if (this.model.facilityId == null) {

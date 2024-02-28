@@ -18,6 +18,7 @@
             @max="45"
             @label="First name"
             @componentType="text" 
+            @required={{true}}
             @value={{this.firstName}}/>
 
             <CustomFormComponent 
@@ -26,6 +27,7 @@
             @max="45"
             @label="Last name"
             @componentType="text" 
+            @required={{true}}
             @value={{this.lastName}}/>
         </div>
 
@@ -35,6 +37,7 @@
             @cssClass="mb-3" 
             @max="45"
             @componentType="email" 
+            @required={{true}}
             @value={{this.email}} 
             @label="Email" />
 
@@ -45,6 +48,7 @@
             @label="User role"
             @componentType="select" 
             @value={{readonly this.userRoleId}}
+            @required={{true}}
             @disabled={{if (is-equal this.model.partyId this.currentUser.loggedUser.party.partyId) 'true'}}
             @onChange={{action (mut this.userRoleId)}}>
                 {{#each this.roleTypes.all as |item|}}

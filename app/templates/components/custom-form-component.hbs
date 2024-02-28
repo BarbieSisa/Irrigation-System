@@ -5,9 +5,9 @@
             </label>
         {{/if}}
         {{#if (is-equal this.componentType 'select')}}
-            <select class="validation-ignore form-select {{this.cssClass}}" value={{this.value}} onchange={{action 'onNewSelectChange'}} disabled={{this.disabled}} required={{this.required}}>
+            <select class="form-select {{this.cssClass}}" value={{this.value}} onchange={{action 'onNewSelectChange'}} disabled={{this.disabled}} required={{this.required}}>
                 {{#unless this.hidePrompt}}
-                    <option value={{null}}>No selection</option>
+                    <option value=''>No selection</option>
                 {{/unless}}
                 {{yield}}
             </select>

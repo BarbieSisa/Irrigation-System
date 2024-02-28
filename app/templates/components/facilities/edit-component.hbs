@@ -9,7 +9,7 @@
         </div>
     </div>
 </header>
-
+<form class="save-facility-form mt-20" data-bs-toggle="validator" role="form">
 <section style="margin-top: 75px;">
     <div class="row">
         <CustomFormComponent 
@@ -18,6 +18,8 @@
         @max="45"
         @componentType="text" 
         @value={{this.facilityName}} 
+        @required={{true}}
         @label="Facility name" />
     </div>
 </section>
+</form>

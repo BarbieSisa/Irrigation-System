@@ -221,3 +221,12 @@ body {
 .mb-50 {margin-bottom:50px !important;}
 .mb-60 {margin-bottom:60px !important;}
 .mb-400 {margin-bottom:400px !important;}
+
+.autocomplete-list {
+  /* Set a fixed height for the container */
+  max-height: 200px; /* Adjust this value as needed */
+  /* Enable vertical scrolling */
+  overflow-y: auto;
+  border: 1px solid #ced4da; /* Adjust color as needed */
+  border-radius: 4px; /* Optional: Add rounded corners */
+}

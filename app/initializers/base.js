@@ -95,6 +95,37 @@ export function initialize() {
     }
     return obj;
   };
+
+  window.formIsValid = function(opt) {
+    if (opt == null || opt.selector == null) {
+        return false;
+    }
+
+    var valid = true;
+
+    if (opt.prepFunc) {
+        var prepFuncValidity = opt.prepFunc.call(this);
+        if (prepFuncValidity != null && (prepFuncValidity === true || prepFuncValidity === false)) {
+            valid = valid && prepFuncValidity;
+        }
+    }
+
+    var element = document.querySelector(opt.selector);
+    if (element && !element.checkValidity()) {
+        element.classList.add("was-validated");
+        valid = false;
+    } else if (element) {
+        element.classList.remove("was-validated");
+    }
+
+    if (opt.postFunc) {
+        var postFuncValidity = opt.postFunc.call(this);
+        if (postFuncValidity != null && (postFuncValidity === true || postFuncValidity === false)) {
+            valid = valid && postFuncValidity;
+        }
+    }
+    return valid;
+};
 }
 export default {
   name: 'utils',
