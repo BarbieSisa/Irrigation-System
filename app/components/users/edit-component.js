@@ -29,7 +29,7 @@ export default class UsersEditComponent extends BaseComponent {
 
   @action
   save(){
-    let formIsValid = window.formIsValid({
+    let formIsValid = this.baseFunctions.formIsValid({
       selector: ".save-user-form"
     });
     if (!formIsValid) {

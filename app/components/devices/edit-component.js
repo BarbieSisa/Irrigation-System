@@ -24,7 +24,7 @@ export default class DevicesEditComponent extends BaseComponent {
 
   @action
   save(){
-    let formIsValid = window.formIsValid({
+    let formIsValid = this.baseFunctions.formIsValid({
       selector: ".save-device-form"
     });
     if (!formIsValid) {

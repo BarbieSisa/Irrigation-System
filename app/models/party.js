@@ -1,4 +1,4 @@
-import { attr, belongsTo } from '@ember-data/model'; 
+import { attr, belongsTo, hasMany } from '@ember-data/model'; 
 import BaseModel from 'irrigation-system/base-elements/base-model'; 
 export default class PartyModel extends BaseModel {
   @attr('number') partyId;
@@ -10,4 +10,11 @@ export default class PartyModel extends BaseModel {
   @belongsTo('user', { async: true, inverse: "party" }) user;
   @belongsTo('person', { async: true, inverse: null }) person;
 
+  @hasMany('facility-party', {    
+    defaultValue() {    
+      return [];    
+    },    
+    async: true,     
+    inverse: 'party'    
+  }) facilityParties; 
 }

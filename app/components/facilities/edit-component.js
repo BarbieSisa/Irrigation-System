@@ -19,7 +19,7 @@ export default class FacilitiesEditComponent extends BaseComponent {
 
   @action
   save(){
-    let formIsValid = window.formIsValid({
+    let formIsValid = this.baseFunctions.formIsValid({
       selector: ".save-facility-form"
     });
     if (!formIsValid) {

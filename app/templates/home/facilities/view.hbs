@@ -1,9 +1,9 @@
-<header class="fixed-filter">
+<header>
     <div class="row mt-05">
-        <div class="col-md-8">
+        <div class="col-md-11">
             <h3>View Facility - {{this.model.facilityName}}</h3>
         </div>
-        <div class="ml-50 col-md-1" style="display: flex;">
+        <div class="col-md-1">
             <button type="button" class="btn btn-primary" {{action 'edit' this.model.facilityId}}>Edit</button>
         </div>
     </div>
@@ -24,18 +24,15 @@
     <div class="tab-content">
         {{#if (is-equal this.selectedTab 'devices')}}
             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                <h4>Devices in {{this.model.facilityName}}</h4>
-                <Facilities::Devices::ListComponent @facilityId={{this.model.facilityId}}/>
+                <Facilities::Devices::ListComponent @model={{this.model}} @facilityId={{this.model.facilityId}}/>
             </div>
         {{else if (is-equal this.selectedTab 'products')}}
             <div class="tab-pane fade show active" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                <h4>Products in {{this.model.facilityName}}</h4>
-                <Facilities::Products::ListComponent @facilityId={{this.model.facilityId}}/>
+                <Facilities::Products::ListComponent @model={{this.model}} @facilityId={{this.model.facilityId}}/>
             </div>
             {{else if (is-equal this.selectedTab 'users')}}
             <div class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-                <h4>Content for Tab 3</h4>
-                <p>This is the content for Tab 3.</p>
+                <Facilities::Users::ListComponent @model={{this.model}} @facilityId={{this.model.facilityId}}/>
             </div>
         {{/if}}
     </div>

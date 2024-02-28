@@ -1,27 +1,4 @@
-import BaseComponent from 'irrigation-system/base-elements/base-component';
-import { scheduleOnce } from '@ember/runloop';
-export default class FacilityProductsListItemComponent extends BaseComponent {
-  init() {
-    super.init(...arguments);
-    scheduleOnce('afterRender', this, function () {
-      const element = this.element;
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5,
-      };
+import InfinityScrollItemComponent from 'irrigation-system/base-elements/infinity-scroll-item-component';
+export default class FacilityProductsListItemComponent extends InfinityScrollItemComponent {
 
-      const callback = (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && this.lastAvailableItemIndex == this.index && this.onShouldLoadNextPage) {
-            this.onShouldLoadNextPage();
-          }
-        });
-      };
-
-      const observer = new IntersectionObserver(callback, options);
-
-      observer.observe(element);
-    });
-  }
 }

@@ -11,7 +11,7 @@
     <div class="form-control" onclick={{action "open"}}>{{or this.label this.prompt this.placeholder}}</div>
   {{/if}}
 
-  <ul class="{{if this.isOpened 'autocomplete-list'}}">
+  <ul class="{{if this.isOpened 'autocomplete-list-small'}}">
     {{#if this.isOpened}}
       {{#each this.loadedItems as |item index|}}
         <Utils::CustomSelectComponents::EntitySelectItemComponent 

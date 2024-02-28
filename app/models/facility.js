@@ -23,4 +23,12 @@ export default class FacilityModel extends BaseModel {
     async: true,     
     inverse: 'facility'    
   }) products; 
+
+  @hasMany('facility-party', {    
+    defaultValue() {    
+      return [];    
+    },    
+    async: true,     
+    inverse: 'facility'    
+  }) facilityParties; 
 }

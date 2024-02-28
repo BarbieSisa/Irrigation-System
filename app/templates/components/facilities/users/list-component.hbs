@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-11">
             <h4>
-                Devices in {{this.model.facilityName}}
+                Users with access in {{this.model.facilityName}}
                 {{#if this.loadedItems.length}}
                     ({{this.loadedItems.length}}/{{this.meta.itemCount}})
                 {{/if}}
@@ -14,9 +14,9 @@
     </div>
     <div class="autocomplete-list-big">
         <ul>
-            {{#each this.loadedItems as |device index|}}
-                <Facilities::Devices::ListItemComponent 
-                @device={{device}} 
+            {{#each this.loadedItems as |facilityParty index|}}
+                <Facilities::Users::ListItemComponent 
+                @party={{facilityParty.party}} 
                 @index={{index}} 
                 @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
                 @onShouldLoadNextPage={{action 'loadNextPage'}}/>

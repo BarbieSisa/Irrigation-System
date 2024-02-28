@@ -8,7 +8,7 @@ export default class InfinityScrollComponent extends BaseComponent {
   @tracked pageSize = 30;
   @tracked pageNumber = 1;
   @tracked sleepHandler;
-
+  @tracked meta;
   makeRequestOnInit = true;
 
   init() {
@@ -40,6 +40,7 @@ export default class InfinityScrollComponent extends BaseComponent {
         queryParams: queryParams
       })
       this.loadedItems = this.loadedItems.concat(models.toArray());
+      this.meta = models.meta.data;
       this.requestLoading = false;
     } catch (error) {
       this.requestLoading = false;
