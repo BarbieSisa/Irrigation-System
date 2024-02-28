@@ -66,6 +66,7 @@
             @pattern={{regex 'password'}} 
             @id="inputPassword" 
             @name="password"
+            @required={{if (or this.pwd this.confirmPassword) true}}
             @value={{this.pwd}} 
             @label="Password" />
 
@@ -75,6 +76,7 @@
             @max="45"
             @componentType="password" 
             @value={{this.confirmPassword}} 
+            @required={{if (or this.pwd this.confirmPassword) true}}
             @pattern={{regex 'password'}} 
             @data-match="#inputPassword" 
             @data-match-error="Passwords don't match!"
