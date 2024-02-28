@@ -1,16 +1,16 @@
-<section style="margin-top: 75px;">
+<section>
     <div>
         <ul>
-            {{#each this.loadedItems as |device index|}}
-                <Devices::ListItemComponent 
-                @device={{device}} 
+            {{#each this.loadedItems as |product index|}}
+                <Facilities::Products::ListItemComponent 
+                @product={{product}} 
                 @index={{index}} 
                 @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
                 @onShouldLoadNextPage={{action 'loadNextPage'}}/>
             {{/each}}
         </ul>
         {{#if this.requestLoading}}
-            <LoaderComponent/>
+            <LoaderComponent @smallLoader={{true}}/>
         {{/if}}
     </div>
 </section>

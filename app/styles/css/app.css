@@ -230,3 +230,22 @@ body {
   border: 1px solid #ced4da; /* Adjust color as needed */
   border-radius: 4px; /* Optional: Add rounded corners */
 }
+
+
+.custom-tabs .nav-item {
+  margin-bottom: 0;
+}
+.custom-tabs .nav-link {
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+}
+.custom-tabs .nav-link.active {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+.custom-tabs .tab-content {
+  border: 1px solid #dee2e6;
+  border-top: none;
+  padding: 1rem;
+}

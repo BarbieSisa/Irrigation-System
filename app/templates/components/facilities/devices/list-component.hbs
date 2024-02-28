@@ -1,8 +1,8 @@
-<section style="margin-top: 75px;">
+<section>
     <div>
         <ul>
             {{#each this.loadedItems as |device index|}}
-                <Devices::ListItemComponent 
+                <Facilities::Devices::ListItemComponent 
                 @device={{device}} 
                 @index={{index}} 
                 @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
@@ -10,7 +10,7 @@
             {{/each}}
         </ul>
         {{#if this.requestLoading}}
-            <LoaderComponent/>
+            <LoaderComponent @smallLoader={{true}}/>
         {{/if}}
     </div>
 </section>

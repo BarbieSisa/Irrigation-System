@@ -1,7 +1,7 @@
 import BaseComponent from 'irrigation-system/base-elements/base-component';
 import { scheduleOnce } from '@ember/runloop';
 import { action } from '@ember/object';
-export default class FacilitiesListItemComponent extends BaseComponent {
+export default class FacilityDevicesListItemComponent extends BaseComponent {
   init() {
     super.init(...arguments);
     scheduleOnce('afterRender', this, function () {
@@ -27,7 +27,7 @@ export default class FacilitiesListItemComponent extends BaseComponent {
   }
 
   @action
-  gotoFacility(facilityId){
-    this.router.transitionTo('home.facilities.view', facilityId);
+  gotoDevice(deviceId){
+    this.router.transitionTo('home.devices.edit', deviceId);
   }
 }

@@ -14,5 +14,13 @@ export default class FacilityModel extends BaseModel {
     },    
     async: true,     
     inverse: 'facility'    
-  }) devices;      
+  }) devices;     
+  
+  @hasMany('product', {    
+    defaultValue() {    
+      return [];    
+    },    
+    async: true,     
+    inverse: 'facility'    
+  }) products; 
 }
