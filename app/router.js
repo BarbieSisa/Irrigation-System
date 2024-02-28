@@ -18,6 +18,10 @@ Router.map(function () {
       this.route('view', {path: '/view/:facility_id'})
       this.route('edit', {path: '/edit/:facility_id'})
       this.route('create', {path: '/create'})
+      this.route('products', {path: '/products'}, function () {
+        this.route('edit', {path: '/edit/:product_id'})
+        this.route('create', {path: '/create/:facility_id'})
+      })
     })
     this.route('devices', {path: '/devices'}, function () {
       this.route('view', {path: '/view/:device_id'})

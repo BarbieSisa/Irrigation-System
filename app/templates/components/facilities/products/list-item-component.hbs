@@ -1,3 +1,20 @@
-<li class={{this.index}}>
-    {{this.product.productName}}
+<li class="mt-10 mb-10">
+    <div style="display: flex;">
+        <div class="col-md-10 txt-bold">
+            {{this.product.productName}}
+        </div>
+        <div class="mb-05 mr-10" style="margin-left: auto;">
+            <button type="button" class="btn btn-primary" {{action 'editProduct'}}>Edit</button>
+            <button type="button" class="ml-10 btn btn-danger" {{action 'deleteProduct'}}>Delete</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Remaining quantity: {{this.product.remQty}} L
+        </div>
+        <div class="col-md-3">
+            Price: {{this.product.price}} BGN/L
+        </div>
+    </div>
+
 </li>

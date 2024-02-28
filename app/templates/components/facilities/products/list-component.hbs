@@ -1,15 +1,14 @@
 <section class="mt-40">
-    <div class="row">
-        <div class="col-md-11">
-            <h4>
-                Products in {{this.model.facilityName}}
-                {{#if this.loadedItems.length}}
-                    ({{this.loadedItems.length}}/{{this.meta.itemCount}})
-                {{/if}}
-            </h4>
-        </div>
-        <div class="col-md-1">
-            <button type="button" class="btn btn-primary" {{action 'refresh'}}>Refresh</button>
+    <div style="display: flex;">
+        <h4>
+            Products in {{this.model.facilityName}}
+            {{#if this.loadedItems.length}}
+                ({{this.loadedItems.length}}/{{this.meta.itemCount}})
+            {{/if}}
+        </h4>
+        <div class="mb-05 mr-10" style="margin-left: auto;">
+            <button type="button" class="btn btn-primary" {{action 'createProduct'}}>Create</button>
+            <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>
         </div>
     </div>
     <div class="autocomplete-list-big">
@@ -19,7 +18,8 @@
                 @product={{product}} 
                 @index={{index}} 
                 @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
-                @onShouldLoadNextPage={{action 'loadNextPage'}}/>
+                @onShouldLoadNextPage={{action 'loadNextPage'}}
+                @onDeleteProduct={{action 'removeProductOnDelete'}}/>
             {{/each}}
         </ul>
         {{#if this.requestLoading}}

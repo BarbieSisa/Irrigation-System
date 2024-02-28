@@ -1,0 +1,40 @@
+<header class="fixed-filter">
+    <div style="display: flex;">
+        <h3>{{if this.model.productId 'Edit' 'Create'}} Product</h3>
+        <div class="mb-05 mr-10" style="margin-left: auto;">
+            <button type="button" class="btn btn-primary" {{action 'save'}}>Save</button>
+            <button type="button" class="ml-10 btn btn-primary" {{action 'cancel'}}>Cancel</button>
+        </div>
+    </div>
+</header>
+<form class="save-product-form mt-20" data-bs-toggle="validator" role="form">
+<section>
+    <div class="row">
+        <CustomFormComponent 
+            @columnSize={{4}} 
+            @cssClass="mb-3" 
+            @max="45"
+            @componentType="text" 
+            @value={{this.productName}} 
+            @required={{true}}
+            @label="Product name" />
+
+        <CustomFormComponent 
+            @columnSize={{4}} 
+            @cssClass="mb-3" 
+            @componentType="number" 
+            @value={{this.price}} 
+            @required={{true}}
+            @label="Price, BGN/L" />
+    </div>
+    <div class="row">
+        <CustomFormComponent 
+            @columnSize={{4}} 
+            @disabled={{true}}
+            @label="Facility" 
+            @value={{readonly this.facilityId}} 
+            @required={{true}} 
+            @componentType="facility" />
+    </div>
+</section>
+</form>

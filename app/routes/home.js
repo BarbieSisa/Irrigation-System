@@ -5,6 +5,8 @@ export default class IndexRoute extends BaseRoute {
   @service('current-user') currentUser;
   @service('device-type') deviceTypes;
   @service('role-type') roleTypes;
+  @service('uom-service') uomService;
+  @service('product-type') productTypeService;
 
   async beforeModel(){
     if (!this.session.isAuthenticated) {
@@ -14,6 +16,8 @@ export default class IndexRoute extends BaseRoute {
     await this.currentUser.setup();
     await this.deviceTypes.setup();
     await this.roleTypes.setup();
+    await this.uomService.setup();
+    await this.productTypeService.setup();
     await this.activeRouteTracker.setup();
   }
 }

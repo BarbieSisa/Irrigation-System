@@ -1,16 +1,14 @@
 <header class="fixed-filter">
-    <div class="row mt-05">
-        <div class="col-md-8">
-            <h3>{{if this.model.partyId 'Edit' 'Create'}} User</h3>
-        </div>
-        <div class="ml-50 col-md-1" style="display: flex;">
+    <div style="display: flex;">
+        <h3>{{if this.model.partyId 'Edit' 'Create'}} User</h3>
+        <div class="mb-05 mr-10" style="margin-left: auto;">
             <button type="button" class="btn btn-primary" {{action 'save'}}>Save</button>
-            <button type="button" class="btn btn-primary ml-05" {{action 'cancel'}}>Cancel</button>
+            <button type="button" class="ml-10 btn btn-primary" {{action 'cancel'}}>Cancel</button>
         </div>
     </div>
 </header>
 <form class="save-user-form mt-20" data-bs-toggle="validator" role="form">
-    <section style="margin-top: 75px;">
+    <section>
         <div class="row">
             <CustomFormComponent 
             @columnSize={{4}} 
@@ -49,7 +47,7 @@
             @componentType="select" 
             @value={{readonly this.userRoleId}}
             @required={{true}}
-            @disabled={{if (is-equal this.model.partyId this.currentUser.loggedUser.party.partyId) 'true'}}
+            @disabled={{if this.model.partyId 'true'}}
             @onChange={{action (mut this.userRoleId)}}>
                 {{#each this.roleTypes.all as |item|}}
                     <option value={{item.roleTypeId}} selected={{opt-is-equal this.userRoleId item.roleTypeId}}>{{item.beautifiedRoleTypeCode}}</option>

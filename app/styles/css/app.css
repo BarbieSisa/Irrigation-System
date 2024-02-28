@@ -72,7 +72,7 @@ body {
 
 .fixed-filter {
   background-color: rgb(255, 255, 255);
-  position: fixed;
+  position: sticky;
   width: 100%;
   z-index: 1000; /* Adjust the z-index as needed */
   top: 56px;
