@@ -232,9 +232,7 @@ body {
 }
 
 .autocomplete-list-big {
-  /* Set a fixed height for the container */
-  max-height: 500px; /* Adjust this value as needed */
-  /* Enable vertical scrolling */
+  height: 400px;
   overflow-y: auto;
   border: 1px solid #ced4da; /* Adjust color as needed */
   border-radius: 4px; /* Optional: Add rounded corners */
