@@ -3,8 +3,14 @@
         <div class="col-md-10" {{action 'gotoUser' this.party.partyId}}>
             {{this.party.person.fullName}} <span><UserRoleBadgeComponent @user={{this.party.user}}/></span>
         </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-primary" {{action 'toggleAccess'}}>Refresh</button>
-        </div>
+        {{#unless this.party.user.isSuperUser}}
+            <div class="col-md-2">
+                <button type="button" class="btn {{if this.hasFacAccess 'btn-warning' 'btn-primary'}}" {{action 'toggleAccess'}}>{{if this.hasFacAccess "Remove access" "Re-grant access"}}</button>
+            </div>
+        {{else}}
+            <div class="col-md-2">
+                <button type="button" class="btn btn-secondary" disabled="">Default access</button>
+            </div>
+        {{/unless}}
     </div>
 </li>

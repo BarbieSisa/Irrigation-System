@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 export default class CurrentUser extends Service {
   @service store;
+  @service('role-type') roleTypes;
   loggedUser = null;
   async setup(){
     let user = await this.store.queryRecord('user', {

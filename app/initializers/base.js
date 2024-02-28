@@ -95,6 +95,54 @@ export function initialize() {
     }
     return obj;
   };
+
+  window.base64URLEncode = function (input) {
+    return input.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+  }
+
+  window.base64URLDecode = function(input) {
+    // Replace non-url compatible chars with base64 standard chars
+    input = input
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
+
+    // Pad out with standard base64 required padding characters
+    var pad = input.length % 4;
+    if(pad) {
+      if(pad === 1) {
+        throw new Error('InvalidLengthError: Input base64url string is the wrong length to determine padding');
+      }
+      input += new Array(5-pad).join('=');
+    }
+
+    return input;
+  }
+
+  window.encodeString = function (str) {
+    try{
+      if(typeof str != 'string'){
+        str = JSON.stringify(str);
+      }
+
+      if(str){
+        return base64URLEncode(btoa(unescape(encodeURIComponent(str || ""))));
+      }
+    }catch(err){
+      logger(err);
+    }
+    return '';
+  };
+
+  window.tryDecodeString = function (str) {
+    try{
+      if(str){
+        return decodeURIComponent(escape(window.atob(base64URLDecode(str))))|| "";
+      }
+    }catch(err){
+      // logger(err);
+    }
+    return str;
+  };
 }
 export default {
   name: 'utils',

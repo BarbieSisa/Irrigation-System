@@ -32,7 +32,11 @@ export default class InfinityScrollComponent extends BaseComponent {
       };
       if (this.queryParamsList != null && this.queryParamsList.length) {
         this.queryParamsList.forEach((qpName)=>{
-          queryParams[qpName] = this[qpName];
+          if (qpName == 'refDoc') {
+            queryParams[qpName] = encodeString(this[qpName]);
+          } else {
+            queryParams[qpName] = this[qpName];
+          }
         }) 
       }
       let models = await this.store.query(this.modelName, {

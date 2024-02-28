@@ -6,7 +6,40 @@ export default class DevicesListComponent extends InfinityScrollComponent {
   @tracked orderBy = 'ASC'
   modelName = 'device';
   endPoint = 'devices';
-  queryParamsList = ['sortBy', 'orderBy', 'searchText', 'facilityId'];
+  refDoc = {
+    "active": true,
+    "deviceName": true,
+    "serialNumber": true,
+    "fromDate": true,
+    "facility": {
+      "facilityName": true,
+      "facilityParties": {
+        "party": {
+          "organization": {
+            "organizationName": true
+          }
+        },
+        "partyRoleType": {}
+      }
+    },
+    "owner": {
+      "organization": {
+        "organizationName": true
+      }
+    },
+    "deviceAttributes": {
+      "attrName": true,
+      "attrValue": true
+    },
+    "deviceProducts": {
+      "key": true,
+      "product": {
+        "productName": true,
+      }
+    },
+    "deviceType": {}
+  }
+  queryParamsList = ['sortBy', 'orderBy', 'searchText', 'facilityId', 'refDoc'];
 
   @action
   createDevice(){
