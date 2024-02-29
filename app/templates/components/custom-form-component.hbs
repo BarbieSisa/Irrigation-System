@@ -24,17 +24,16 @@
             placeholder={{this.placeHolder}} 
             class="form-control {{this.cssClass}}" 
             name={{this.name}}
-            onkeydown={{action 'onRawInputChange'}} 
+            onkeyup={{action 'onRawInputChange'}} 
             disabled={{this.disabled}}
             required={{this.required}}
-            pattern={{this.pattern}} 
             step={{this.step}} 
             min={{this.min}} 
             max={{this.max}}
             minlength={{this.minlength}} 
             maxlength={{this.maxlength}}
+            pattern={{this.customPattern}}
             data-match-error={{this.data-match-error}} 
-            data-match="{{this.data-match}}"
-            autocomplete="off"/>
+            data-match="{{this.data-match}}"/>
         {{/if}}
     </div>

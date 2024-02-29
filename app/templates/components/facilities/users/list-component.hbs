@@ -7,7 +7,9 @@
             {{/if}}
         </h4>
         <div class="mb-05 mr-10" style="margin-left: auto;">
-            <button type="button" class="btn btn-block btn-success">Grant access</button>
+            {{#unless this.currentUser.isCustomer}}
+                <button type="button" class="btn btn-block btn-success">Grant access</button>
+            {{/unless}}
             <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>
         </div>
     </div>

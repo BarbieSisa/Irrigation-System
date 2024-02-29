@@ -26,7 +26,7 @@ export default class CustomFormComponent extends BaseComponent {
       this.value = event.target.value;
     }
     if (this.get('onChange')) {
-      this.get('onChange')(value);
+      this.get('onChange')(this.value);
     }
   };
 }

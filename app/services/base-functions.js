@@ -17,6 +17,7 @@ export default class BaseFunctions extends Service {
     if (!document.querySelector(opt.selector).checkValidity()) {
       document.querySelector(opt.selector).classList.add("was-validated")
       valid = false;
+      document.querySelector(opt.selector).reportValidity();
     } else {
       document.querySelector(opt.selector).classList.remove("was-validated")
     }

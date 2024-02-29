@@ -12,7 +12,11 @@ export default class DeviceTypeService extends Service {
       }
     })
     if (deviceTypes != null){
-      this.all = (deviceTypes || []).toArray();
+      this.all = (deviceTypes || []).toArray().filter(p=>p.get('deviceTypeId') == this.GOSHO || p.get('deviceTypeId') == this.GOSHO2 || p.get('deviceTypeId') == this.GOGO2);
     }
   };
+
+  GOSHO =  13;
+  GOSHO2 = 34;
+  GOGO2 = 37;
 }
