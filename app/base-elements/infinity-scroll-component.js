@@ -78,8 +78,10 @@ export default class InfinityScrollComponent extends BaseComponent {
 
   @action
   async refresh() {
-    this.pageNumber = 1;
-    this.loadedItems = [];
-    return await this.makeRequest();
+    if (!this.requestLoading) {
+      this.pageNumber = 1;
+      this.loadedItems = [];
+      return await this.makeRequest();
+    }
   }
 }

@@ -42,7 +42,6 @@ export default class GrantUsersListComponent extends InfinityScrollComponent {
           userRoleTypeid:this.roleTypes.USER_ROLE_CUSTOMER_ID,
           pageSize: 2147483647
         }
-        this.set('requestLoading', true);
         let partyIdsForExclude = await this.get('store').query('party', {
           queryParams: queryParams,
           endPoint: this.get('baseEndpoint'),
