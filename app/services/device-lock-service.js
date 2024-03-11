@@ -24,7 +24,7 @@ export default class DeviceLockService extends Service {
         unpacked = unpacked ? unpacked.data : null;
         return unpacked;
       } catch (error) {
-        this.notify.error(error);
+        this.notify.error("Something went wrong..");
         console.log(error);
       }
     }
@@ -97,7 +97,7 @@ export default class DeviceLockService extends Service {
         return false;
       }
     } catch (error) {
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
       console.log(error);
     }
   };

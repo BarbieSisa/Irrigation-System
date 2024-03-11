@@ -34,7 +34,7 @@ export default class FacilityUsersListItemComponent extends InfinityScrollItemCo
       console.log(grantFacAccess ? 'Access granted' : 'Access removed');
       return promise;
     } catch (error) {
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
       console.log(error)
     }
   }

@@ -39,7 +39,7 @@ export default class DevicesEditComponent extends BaseComponent {
       return this.router.replaceWith('home.devices');
     } catch (error) {
       console.log(error);
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
     }
   }
 
@@ -74,7 +74,7 @@ export default class DevicesEditComponent extends BaseComponent {
       }
     } catch (error) {
       console.log(error);
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
     }
   };
 
@@ -91,7 +91,7 @@ export default class DevicesEditComponent extends BaseComponent {
       })
     } catch (error) {
       console.log(error);
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
     }
   };
 
@@ -102,7 +102,7 @@ export default class DevicesEditComponent extends BaseComponent {
       return await this.unlockDevice(true);
     } catch (error) {
       console.log(error);
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
     }
   };
 
@@ -180,7 +180,7 @@ export default class DevicesEditComponent extends BaseComponent {
       this.router.replaceWith('home.devices');
     } catch (error) {
       console.log(error)
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
     }
   };
 
@@ -192,7 +192,7 @@ export default class DevicesEditComponent extends BaseComponent {
       await this.unlockDevice();
     } catch (error) {
       console.log(error)
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
     }
     return history.back();
   };

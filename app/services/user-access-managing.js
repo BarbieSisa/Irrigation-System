@@ -8,7 +8,7 @@ export default class UserAccessManagingService extends Service {
       try {
         record.customUnloadRecord();
       } catch (err) {
-        this.notify.error(error);
+        this.notify.error("Something went wrong..");
         console.log(err);
       }
     });
@@ -37,7 +37,7 @@ export default class UserAccessManagingService extends Service {
       this.unloadRecords(facilityPartiesToUnload);
       return facilityParties;
     } catch (error) {
-      this.notify.error(error);
+      this.notify.error("Something went wrong..");
       console.log(error);
     }
   };
