@@ -128,7 +128,7 @@ export function initialize() {
         return base64URLEncode(btoa(unescape(encodeURIComponent(str || ""))));
       }
     }catch(err){
-      logger(err);
+      console.log(err);
     }
     return '';
   };
@@ -139,7 +139,7 @@ export function initialize() {
         return decodeURIComponent(escape(window.atob(base64URLDecode(str))))|| "";
       }
     }catch(err){
-      // logger(err);
+      console.log(err);
     }
     return str;
   };

@@ -31,6 +31,9 @@ export default class LoginController extends BaseController {
         confirmationKey
       })
     document.removeEventListener("keyup", this.OnEnterFunc);
-    return this.get('router').transitionTo('home');
+    await this.get('router').transitionTo('home');
+    return this.notify.success('Welcome back ' + this.currentUser.get('loggedUser.party.person.firstName') + "!", {
+      closeAfter: 5000
+    });
   }
 }

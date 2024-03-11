@@ -83,7 +83,7 @@ DS.Store.reopen({
       try {
         record.customUnloadRecord();
       } catch (err) {
-        logger(err);
+        console.log(err);
       }
     });
   },

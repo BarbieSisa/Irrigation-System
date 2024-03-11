@@ -4,4 +4,5 @@ export default class BaseRoute extends Route {
   @service router;
   @service store;
   @service('active-route-tracker') activeRouteTracker;
+  @service notify;
 }

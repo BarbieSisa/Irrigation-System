@@ -28,7 +28,7 @@ export default class UsersEditComponent extends BaseComponent {
   }
 
   @action
-  save(){
+  async save(){
     let formIsValid = this.baseFunctions.formIsValid({
       selector: ".save-user-form"
     });
@@ -49,7 +49,8 @@ export default class UsersEditComponent extends BaseComponent {
         }
       }
     }
-    return getObject(this.model.user).save(options);
+    await getObject(this.model.user).save(options);
+    this.notify.success('Saved!');
   }
 
   @action

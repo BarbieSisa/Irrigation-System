@@ -50,8 +50,10 @@ export default class ProductsEditComponent extends BaseComponent {
         this.model.set('productRatios', [productRatio]);
       }
       await this.model.save();
+      this.notify.success('Saved!');
       return this.router.transitionTo('home.facilities.view', this.model.get('facility.facilityId'));
     } catch (error) {
+      this.notify.error(error);
       console.log(error);
     }
   }

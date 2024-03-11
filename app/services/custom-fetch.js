@@ -3,6 +3,7 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 export default class CustomFetch extends Service {
   @service('session') session;
+  @service notify;
 
   getQueryString (queryParams) {
     if (queryParams == null) {
@@ -123,6 +124,7 @@ export default class CustomFetch extends Service {
         return Promise.reject();
       }
     } catch (error) {
+      this.notify.error(error);
       console.log(error);
     }
     return Promise.reject();
@@ -136,13 +138,11 @@ export default class CustomFetch extends Service {
     if (status == 401) {
       this.get('session').invalidate();
     } else {
-      if (status == 403) {
-        alert('forbidden 403')
-      }
-
       if(data && data.status === 0){
-        console.log("ERROR_NETWORK_CONNECTION_PROBLEM");
+        this.notify.error("Network connection problem!");
+        console.log("Network connection problem!");
       }else{
+        this.notify.error("Seems like there is an error... : HTTP " + data.status + (data.statusText ? "(" + data.statusText + ")" : ""));
         console.log(data);
       }
     }

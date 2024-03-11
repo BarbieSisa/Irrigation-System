@@ -26,9 +26,15 @@ export default class FacilityUsersListItemComponent extends InfinityScrollItemCo
         facilityId: this.get('facility.facilityId'),
         grantFacAccess: grantFacAccess
       });
+      if (grantFacAccess) {
+        this.notify.success('Access granted');
+      } else {
+        this.notify.warning('Access removed')
+      }
       console.log(grantFacAccess ? 'Access granted' : 'Access removed');
       return promise;
     } catch (error) {
+      this.notify.error(error);
       console.log(error)
     }
   }

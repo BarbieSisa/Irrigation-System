@@ -1,1 +1,10 @@
 {{outlet}}
+
+<EmberNotify @messageStyle="bootstrap" @closeAfter={{3000}} as |message close|>
+    <a {{on "click" (action close)}} class="close">
+      Dismiss
+    </a>
+    <span class="message-from-block">
+      {{message.text}}
+    </span>
+</EmberNotify>

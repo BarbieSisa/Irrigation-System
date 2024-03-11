@@ -10,11 +10,13 @@ export default class FacilityProductsListItemComponent extends InfinityScrollIte
   async deleteProduct() {
     try {
       await this.product.destroyRecord();
+      this.notify.warning('Deleted!');
       if (this.onDeleteProduct) {
         this.onDeleteProduct(this.product);
       }
       this.product.customUnloadRecord();
     } catch (error) {
+      this.notify.error(error);
       console.log(error)
     }
   };

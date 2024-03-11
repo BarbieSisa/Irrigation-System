@@ -5,6 +5,7 @@ export default class BaseModel extends Model {
   @service('base-functions') baseFunctions;
   @service('current-user') currentUser;
   @service('active-route-tracker') activeRouteTracker;
+  @service notify;
   
   customUnloadRecord() {
     try {
@@ -32,7 +33,7 @@ export default class BaseModel extends Model {
       }
       record.unloadRecord();
     } catch (err) {
-      logger(err);
+      this.notify.error(err);
     }
 
   }

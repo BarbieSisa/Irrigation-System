@@ -6,4 +6,5 @@ export default class BaseController extends Controller {
   @service('custom-fetch') customFetch;
   @service('store') store;
   @service('active-route-tracker') activeRouteTracker;
+  @service notify;
 }

@@ -18,7 +18,7 @@ export default class FacilitiesEditComponent extends BaseComponent {
   }
 
   @action
-  save(){
+  async save(){
     let formIsValid = this.baseFunctions.formIsValid({
       selector: ".save-facility-form"
     });
@@ -34,7 +34,8 @@ export default class FacilitiesEditComponent extends BaseComponent {
         }
       }
     }
-    return this.model.save(options);
+    await this.model.save(options);
+    this.notify.success('Saved!');
   }
 
   @action

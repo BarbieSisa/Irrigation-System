@@ -763,3 +763,22 @@ body {
 .popup.size-xlarge {
   max-width: 1600px;
 }
+
+/* Ember notify */
+/* Main container */
+.custom-notify {
+  position: fixed;
+  top: 10px;
+  right: 0;
+  left: 0;
+}
+
+/* Message box */
+.custom-notify .callout {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Classes applied for animating in/out */
+.custom-notify .ember-notify-show {}
+.custom-notify .ember-notify-hide {}

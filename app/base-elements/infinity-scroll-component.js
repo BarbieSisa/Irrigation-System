@@ -47,6 +47,7 @@ export default class InfinityScrollComponent extends BaseComponent {
       this.meta = models.meta.data;
       this.requestLoading = false;
     } catch (error) {
+      this.notify.error(error);
       this.requestLoading = false;
     }
     return true;

@@ -53,6 +53,7 @@ export default class GrantUsersListComponent extends InfinityScrollComponent {
         return await this.send('refresh');
       }
     } catch (error) {
+      this.notify.error(error);
       console.log(error);
     }
   }
