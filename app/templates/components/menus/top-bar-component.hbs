@@ -6,7 +6,7 @@
         <a class="navbar-brand" {{action this.onGoto 'home.index'}}>Home</a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
+                <li class="nav-item" {{action 'gotoMyProfile'}}>
                     <a class="nav-link btn">
                         {{this.currentUser.loggedUser.party.person.fullName}} 
                         <span><UserRoleBadgeComponent @user={{this.currentUser.loggedUser}}/></span>

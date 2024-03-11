@@ -1,0 +1,30 @@
+<Users::Facilities::ListComponent @model={{this.model}} @onAccessChange={{action 'refresh'}}/>
+
+<section class="mt-40 {{@cssClass}}" style="flex-grow: 1;">
+    <div style="display: flex;">
+        <h4>
+            Accessible Devices
+            {{#if this.loadedItems.length}}
+                ({{this.loadedItems.length}}/{{this.meta.itemCount}})
+            {{/if}}
+        </h4>
+        <div class="mb-05 mr-10" style="margin-left: auto;">
+            <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>
+        </div>
+    </div>
+    <div class="autocomplete-list-big">
+        <ul>
+            {{#each this.loadedItems as |device index|}}
+                <Users::Devices::ListItemComponent 
+                @party={{this.model}} 
+                @index={{index}} 
+                @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
+                @onShouldLoadNextPage={{action 'loadNextPage'}}
+                @device={{device}}/>
+            {{/each}}
+        </ul>
+        {{#if this.requestLoading}}
+            <LoaderComponent @smallLoader={{true}}/>
+        {{/if}}
+    </div>
+</section>

@@ -1,0 +1,36 @@
+<section class="mt-40" style="flex-grow: 0.5;">
+    <div style="display: flex;">
+        <h4>
+            Accessible facilities
+            {{#if this.loadedItems.length}}
+                ({{this.loadedItems.length}}/{{this.meta.itemCount}})
+            {{/if}}
+        </h4>
+        <div class="mb-05 mr-10" style="margin-left: auto;">
+            {{#unless this.currentUser.isCustomer}}
+                <button type="button" class="btn btn-block btn-success" {{action (mut this.showModal) true}}>Grant access</button>
+            {{/unless}}
+            <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>
+        </div>
+    </div>
+    <div class="autocomplete-list-big">
+        <ul>
+            {{#each this.loadedItems as |facility index|}}
+                <Users::Facilities::ListItemComponent 
+                @party={{this.model}} 
+                @index={{index}} 
+                @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
+                @onShouldLoadNextPage={{action 'loadNextPage'}}
+                @facility={{facility}}
+                @onAccessChange={{@onAccessChange}}/>
+            {{/each}}
+        </ul>
+        {{#if this.requestLoading}}
+            <LoaderComponent @smallLoader={{true}}/>
+        {{/if}}
+    </div>
+</section>
+
+{{#if this.showModal}}
+    <Users::Facilities::Popup::ListComponent @onAccessChange={{@onAccessChange}} @showModal={{this.showModal}} @party={{this.model}} @baseEndpoint={{this.endPoint}} @onCloseModal={{action 'closeGrantAccessModal'}}/>
+{{/if}}

@@ -1,0 +1,16 @@
+<li class='mt-10 mb-10'>
+    <div style="display: flex;">
+        <div class="txt-bold" {{action 'gotoFacility' this.facility.facilityId}}>
+            {{this.facility.facilityName}}
+        </div>
+        {{#unless this.party.user.isSuperUser}}
+            <div class="mb-05 mr-10" style="margin-left: auto;">
+                <button type="button" class="btn {{if this.hasFacAccess 'btn-warning' 'btn-primary'}}" disabled={{is-equal this.party.partyId this.currentUser.loggedUser.party.partyId}} onclick={{unless (is-equal this.party.partyId this.currentUser.loggedUser.party.partyId) (action 'toggleAccess')}}>{{if this.hasFacAccess "Remove access" "Re-grant access"}}</button>
+            </div>
+        {{else}}
+            <div class="mb-05 mr-10" style="margin-left: auto;">
+                <button type="button" class="btn btn-secondary" disabled="">Default access</button>
+            </div>
+        {{/unless}}
+    </div>
+</li>

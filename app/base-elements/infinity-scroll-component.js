@@ -47,7 +47,9 @@ export default class InfinityScrollComponent extends BaseComponent {
       this.meta = models.meta.data;
       this.requestLoading = false;
     } catch (error) {
-      this.notify.error("Something went wrong..");
+      if ((error || {}).errorCode !== "ERROR_USER_DOES_NOT_HAVE_PERMISSIONS") {
+        this.notify.error("Something went wrong..");
+      }
       this.requestLoading = false;
     }
     return true;

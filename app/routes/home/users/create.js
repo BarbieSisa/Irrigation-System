@@ -1,5 +1,5 @@
 import BaseRoute from 'irrigation-system/base-elements/base-route'; 
-export default class DeviceViewRoute extends BaseRoute {
+export default class UserCreateRoute extends BaseRoute {
   async model(params) {
     return this.store.createRecord('party', {
       user: this.store.createRecord('user', {
