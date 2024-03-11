@@ -1,0 +1,31 @@
+   <Popup::BaseModalComponent @showModal={{@showModal}}>
+    <Popup::HeaderComponent @title="Available users for access granting in {{this.facility.facilityName}}" @onClose={{action this.onCloseModal}}>
+        <span {{action 'customRefresh'}}>Refresh</span>
+    </Popup::HeaderComponent>
+    <Popup::BodyComponent>
+        <div class="row">
+            <CustomFormComponent 
+            @columnSize={{3}} 
+            @cssClass="mb-3 mt-3" 
+            @componentType="text" 
+            @value={{this.searchText}} 
+            @placeHolder="Search" 
+            @onChange={{action 'makeRequestOnFieldChange'}}/>
+        </div>
+        <div class="autocomplete-list-big">
+            <ul>
+                {{#each this.loadedItems as |party index|}}
+                    <Facilities::Users::Popup::ListItemComponent 
+                    @party={{party}} 
+                    @index={{index}} 
+                    @lastAvailableItemIndex={{this.lastAvailableItemIndex}}
+                    @onShouldLoadNextPage={{action 'loadNextPage'}}
+                    @facility={{this.facility}}/>
+                {{/each}}
+            </ul>
+            {{#if this.requestLoading}}
+                <LoaderComponent @smallLoader={{true}}/>
+            {{/if}}
+        </div>
+    </Popup::BodyComponent>
+   </Popup::BaseModalComponent> 

@@ -1,0 +1,9 @@
+<header class="popup-header">
+	<div class="title">{{@title}}</div>
+	<div class="header-actions">
+		{{yield}}
+		{{#if @onClose}}
+			<span onclick={{action @onClose}}>Close</span>
+		{{/if}}
+	</div>
+</header>

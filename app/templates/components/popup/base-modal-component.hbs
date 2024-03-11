@@ -1,0 +1,7 @@
+{{#if this.showModal}}
+<div><ModalDialog @hasOverlay={{true}} @onClose={{action 'closeModal'}} @containerClassNames={{concat "popup " this.containerClassNames " " this.cssClass}} @translucentOverlay={{true}} @containerClass={{this.containerClass}}>
+	<section class="inner-wrap" id={{this.componentId}}>
+	{{yield}}
+	</section>
+</ModalDialog></div>
+{{/if}}
