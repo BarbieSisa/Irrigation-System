@@ -8,7 +8,9 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('login');
+  this.route('page-not-found', {path: '/*wildcard'});
   this.route('home', {path: '/home'}, function(){
+    this.route('page-not-found', {path: '/*wildcard'});
     this.route('users', {path: '/users'}, function () {
       this.route('view', {path: '/view/:party_id'})
       this.route('edit', {path: '/edit/:party_id'})

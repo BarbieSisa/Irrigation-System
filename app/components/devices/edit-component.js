@@ -177,7 +177,7 @@ export default class DevicesEditComponent extends BaseComponent {
         window.onbeforeunload = null;
         await this.unlockDevice();
       }
-      this.router.replaceWith('home.devices');
+      this.router.replaceWith('home.devices.view', device.deviceId);
     } catch (error) {
       console.log(error)
       this.notify.error("Something went wrong..");
