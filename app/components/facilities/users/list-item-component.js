@@ -45,6 +45,10 @@ export default class FacilityUsersListItemComponent extends InfinityScrollItemCo
 
   @action
   gotoUser(userId){
+    if (this.currentUser.isCustomer && this.currentUser.get('loggedUser.party.partyId') != userId) {
+      this.notify.warning('You do not have permissions to view this user!');
+      return;
+    }
     this.router.transitionTo('home.users.view', userId);
   }
 }

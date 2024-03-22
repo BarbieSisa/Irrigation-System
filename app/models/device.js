@@ -10,6 +10,10 @@ export default class DeviceModel extends BaseModel {
     defaultValue() { return new Date().getTime(); }    
   }) fromDate;    
   @attr('number') thruDate;   
+  @attr('string') deviceProductsToRemove;       
+
+  @belongsTo('device-type', { async: true, inverse: null }) deviceType;    
+  @belongsTo('facility', { async: true, inverse: 'devices' }) facility;  
 
   @hasMany('device-attr', {    
     defaultValue() {    
@@ -18,10 +22,15 @@ export default class DeviceModel extends BaseModel {
     async: true,     
     inverse: 'device'    
   }) deviceAttributes;    
-    
-  @belongsTo('device-type', { async: true, inverse: null }) deviceType;    
-  @belongsTo('facility', { async: true, inverse: 'devices' }) facility;    
 
+  @hasMany('device-product', {       
+    defaultValue() {       
+      return [];       
+    },      
+    async: true,       
+    inverse: 'device'      
+  }) deviceProducts;    
+  
   @computed('deviceName', 'serialNumber')    
   get deviceNameAndSerialNumber() {    
     var result = "";    

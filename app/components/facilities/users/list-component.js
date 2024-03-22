@@ -6,8 +6,8 @@ export default class UsersListComponent extends InfinityScrollComponent {
   @service('role-type') roleTypes;
   @service('current-user') currentUser;
 
-  @tracked sortBy = 'person.firstName'
-  @tracked orderBy = 'ASC'
+  @tracked sortBy = this.currentUser.isCustomer ? 'party.person.firstName' : 'person.firstName';
+  @tracked orderBy = 'ASC';
   @tracked includeRestricted = false;
   @tracked includeAllowed = true;
   @tracked showModal = false;
@@ -15,6 +15,9 @@ export default class UsersListComponent extends InfinityScrollComponent {
 
   @computed('facilityId')
   get endPoint(){
+    if (this.currentUser.isCustomer) {
+      return 'facilityParties/customers';
+    }
     return 'facilities/' + this.facilityId + '/parties';
   }
 
