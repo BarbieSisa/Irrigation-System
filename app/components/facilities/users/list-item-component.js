@@ -41,6 +41,6 @@ export default class FacilityUsersListItemComponent extends InfinityScrollItemCo
 
   @action
   gotoUser(userId){
-    this.router.transitionTo('home.users.edit', userId);
+    this.router.transitionTo('home.users.view', userId);
   }
 }

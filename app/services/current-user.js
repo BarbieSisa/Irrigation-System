@@ -40,4 +40,9 @@ export default class CurrentUser extends Service {
 
     return this.loggedUser.get('userRoles.firstObject.roleType.roleTypeId') == this.roleTypes.USER_ROLE_CUSTOMER_ID;
   }
+
+  @computed()
+  get wormholeContainerElement(){
+    return document.getElementById('wormhole-container');
+  }
 }

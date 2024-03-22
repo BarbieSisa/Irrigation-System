@@ -1,11 +1,13 @@
-<header class="fixed-filter">
-    <div style="display: flex;">
-        <h3>View Facility - {{this.model.facilityName}}</h3>
-        <div class="mb-05 mr-10" style="margin-left: auto;">
-            <button type="button" class="btn btn-primary" {{action 'edit' this.model.facilityId}}>Edit</button>
-        </div>
-    </div>
-</header>
+{{#in-element this.currentUser.wormholeContainerElement}}
+  <header class="fixed-filter">
+      <div style="display: flex;">
+          <h3>View Facility - {{this.model.facilityName}}</h3>
+          <div class="mb-05 mr-10" style="margin-left: auto;">
+              <button type="button" class="btn btn-primary" {{action 'edit' this.model.facilityId}}>Edit</button>
+          </div>
+      </div>
+  </header>
+{{/in-element}}
 
   <div class="container mt-30">
     <ul class="nav nav-tabs custom-tabs">

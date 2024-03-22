@@ -1,26 +1,29 @@
-<header class="fixed-filter">
-    <div style="display: flex;">
-        <h3>
-            Devices 
-            {{#if this.loadedItems.length}}
-                ({{this.loadedItems.length}}/{{this.meta.itemCount}})
-            {{/if}}
-        </h3>
-        <div class="mb-05 mr-10" style="margin-left: auto;">
-            <button type="button" class="btn btn-primary" {{action 'createDevice'}}>Create</button>
-            <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>
+{{#in-element this.currentUser.wormholeContainerElement}}
+    <header class="fixed-filter">
+        <div style="display: flex;">
+            <h3>
+                Devices 
+                {{#if this.loadedItems.length}}
+                    ({{this.loadedItems.length}}/{{this.meta.itemCount}})
+                {{/if}}
+            </h3>
+            <div class="mb-05 mr-10" style="margin-left: auto;">
+                <button type="button" class="btn btn-primary" {{action 'createDevice'}}>Create</button>
+                <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <CustomFormComponent 
-        @columnSize={{3}} 
-        @cssClass="mb-3 mt-3" 
-        @componentType="text" 
-        @value={{this.searchText}} 
-        @placeHolder="Search" 
-        @onChange={{action 'makeRequestOnFieldChange'}}/>
-    </div>
-</header>
+    </header>
+{{/in-element}}
+
+<div class="row">
+    <CustomFormComponent 
+    @columnSize={{3}} 
+    @cssClass="mb-3 mt-3" 
+    @componentType="text" 
+    @value={{this.searchText}} 
+    @placeHolder="Search" 
+    @onChange={{action 'makeRequestOnFieldChange'}}/>
+</div>
 
 <section>
     <div>

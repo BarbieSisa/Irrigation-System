@@ -1,11 +1,13 @@
-<header class="fixed-filter">
-    <div style="display: flex">
-        <h3>View User - {{this.model.person.fullName}}</h3>
-        <div class="mb-05 mr-10" style="margin-left: auto;">
-            <button type="button" class="btn btn-primary" {{action 'edit' this.model.partyId}}>Edit</button>
+{{#in-element this.currentUser.wormholeContainerElement}}
+    <header class="fixed-filter">
+        <div style="display: flex">
+            <h3>View User - {{if (is-equal this.currentUser.loggedUser.party.partyId this.model.partyId) "My profile" this.model.person.fullName}}</h3>
+            <div class="mb-05 mr-10" style="margin-left: auto;">
+                <button type="button" class="btn btn-primary" {{action 'edit' this.model.partyId}}>Edit</button>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+{{/in-element}}
 
 <div style="display: flex; width: 100%;">
     <Users::Devices::ListComponent @cssClass="ml-30" @model={{this.model}}/>

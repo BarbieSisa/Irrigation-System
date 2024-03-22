@@ -1,4 +1,4 @@
-<section class="mt-40" style="flex-grow: 0.5;">
+<section class="mt-40" style="flex-grow: {{if (is-equal this.currentUser.loggedUser.party.partyId this.model.partyId) '0.8' '0.5'}};">
     <div style="display: flex;">
         <h4>
             Accessible facilities
@@ -7,7 +7,7 @@
             {{/if}}
         </h4>
         <div class="mb-05 mr-10" style="margin-left: auto;">
-            {{#unless this.currentUser.isCustomer}}
+            {{#unless (or (is-equal this.currentUser.loggedUser.party.partyId this.model.partyId) this.currentUser.isCustomer)}}
                 <button type="button" class="btn btn-block btn-success" {{action (mut this.showModal) true}}>Grant access</button>
             {{/unless}}
             <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>

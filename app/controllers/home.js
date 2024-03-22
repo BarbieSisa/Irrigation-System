@@ -18,4 +18,8 @@ export default class HomeController extends BaseController {
   goto(route){
       return this.router.transitionTo(route)
   }
+  @action
+  goBack(){
+      return history.back();
+  }
 }
