@@ -11,6 +11,7 @@ Router.map(function () {
   this.route('page-not-found', {path: '/*wildcard'});
   this.route('home', {path: '/home'}, function(){
     this.route('page-not-found', {path: '/*wildcard'});
+    this.route('insufficient-permissions', {path: '/insufficient-permissions'});
     this.route('users', {path: '/users'}, function () {
       this.route('view', {path: '/view/:party_id'})
       this.route('edit', {path: '/edit/:party_id'})

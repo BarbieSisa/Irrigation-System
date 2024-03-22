@@ -41,7 +41,12 @@ export default class UsersEditComponent extends BaseComponent {
     this.model.set('user.password', this.pwd);
     this.model.set('user.confirmPassword', this.confirmPassword);
     this.model.set('user.userRoles.firstObject.roleType', this.store.peekRecord('role-type', this.userRoleId));
-    let options = null;
+    let options = {
+      adapterOptions: {
+        endPoint: "users/update-user/" + this.model.get('user.userId'),
+        includeId:false
+      }
+    };
     if (this.model.partyId == null) {
       options = {
         adapterOptions: {

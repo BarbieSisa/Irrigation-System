@@ -18,9 +18,11 @@
       <li class="nav-item" {{action (mut this.selectedTab) 'products'}}>
         <a class="nav-link {{if (is-equal this.selectedTab 'products') 'active'}}" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Products</a>
       </li>
-      <li class="nav-item" {{action (mut this.selectedTab) 'users'}}>
-        <a class="nav-link {{if (is-equal this.selectedTab 'users') 'active'}}" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Users with access</a>
-      </li>
+      {{#unless this.currentUser.isCustomer}}
+        <li class="nav-item" {{action (mut this.selectedTab) 'users'}}>
+          <a class="nav-link {{if (is-equal this.selectedTab 'users') 'active'}}" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Users with access</a>
+        </li>
+      {{/unless}}
     </ul>
     <div class="tab-content">
         {{#if (is-equal this.selectedTab 'devices')}}
@@ -31,7 +33,7 @@
             <div class="tab-pane fade show active" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
                 <Facilities::Products::ListComponent @model={{this.model}} @facilityId={{this.model.facilityId}}/>
             </div>
-            {{else if (is-equal this.selectedTab 'users')}}
+        {{else if (and (not this.currentUser.isCustomer) (is-equal this.selectedTab 'users'))}}
             <div class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
                 <Facilities::Users::ListComponent @model={{this.model}} @facilityId={{this.model.facilityId}}/>
             </div>

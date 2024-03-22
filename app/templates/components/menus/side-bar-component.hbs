@@ -4,7 +4,7 @@
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
             <div class="position-sticky">
                 <ul class="nav flex-column">
-                    {{#unless (is-equal this.currentUser.loggedUser.userRoles.firstObject.roleType this.roleTypes.USER_ROLE_CUSTOMER)}}
+                    {{#unless this.currentUser.isCustomer}}
                         <li class="nav-item">
                             <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.users') 'selected'}}" {{action this.onGoto 'home.users.index'}}>
                                 Users

@@ -9,6 +9,7 @@ export default class PartyModel extends BaseModel {
   
   @belongsTo('user', { async: true, inverse: "party" }) user;
   @belongsTo('person', { async: true, inverse: null }) person;
+  @belongsTo('party-type', { async: true, inverse: null }) partyType;
 
   @hasMany('facility-party', {    
     defaultValue() {    

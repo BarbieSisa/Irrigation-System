@@ -3,7 +3,7 @@
 <Menus::SideBarComponent @onGoto={{action 'goto'}}>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
         <div style="display: flex">
-            {{#unless (or (index-of this.activeRouteTracker.activeRouteName 'page-not-found') (index-of this.activeRouteTracker.activeRouteName 'home.index'))}}
+            {{#unless (or (index-of this.activeRouteTracker.activeRouteName 'insufficient-permissions') (index-of this.activeRouteTracker.activeRouteName 'page-not-found') (index-of this.activeRouteTracker.activeRouteName 'home.index'))}}
                 <button type="button" class="mr-20 btn btn-primary" style="flex-grow: 0.3;" {{action 'goBack'}}>Back</button>
             {{/unless}}
             <div id="wormhole-container" style="flex-grow: 9.7;"></div>
