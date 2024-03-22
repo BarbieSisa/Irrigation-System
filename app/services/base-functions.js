@@ -1,5 +1,8 @@
 import Service from '@ember/service';
+import { inject as service } from '@ember/service';
 export default class BaseFunctions extends Service {
+  @service('custom-fetch') customFetch;
+
   formIsValid(opt){
     if (opt == null || opt.selector == null) {
       return false;
@@ -30,5 +33,43 @@ export default class BaseFunctions extends Service {
     }
     return valid;
     //return true;
+  };
+
+  async loadDeviceConfig(device) {
+    if (device == null) {
+      return null;
+    }
+    try {
+      let reqData = await this.customFetch.makeRequest({
+        endPoint: "syncdrives/" + device.get('deviceId') + "/conf",
+      })
+      let config = reqData !== null ? reqData.data : null;
+      let parsedConfig = this.parseConfig(config);
+      return parsedConfig;
+    } catch (error) {
+      if (error && error.statusCode === "FAILURE" && error.errorCode === "ERROR_DEVICE_SYNCDRIVE_DOES_NOT_EXIST") {
+        return null;
+      }
+      throw err;
+    }
+  };
+
+  parseConfig(data) {
+    let config = '';
+    if (data && data.deviceSyncblocks) {
+
+      for (let idx = 0; idx < data.deviceSyncblocks.length; idx++) {
+        let block = data.deviceSyncblocks[idx];
+        block = block.deviceSyncblockData;
+        block = atob(idx !== data.deviceSyncblocks.length ? block : block.substr(0, block.length - 8));
+        block = block.substr(0, block.indexOf('\0') !== -1 ? block.indexOf('\0') : block.length);
+        if (!block || block.length === 0) {
+          break;
+        }
+        config = config + block;
+      }
+      config = JSON.parse(config || null);
+    }
+    return config ? config : null;
   };
 }
