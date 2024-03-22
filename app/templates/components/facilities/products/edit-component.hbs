@@ -1,12 +1,14 @@
-<header class="fixed-filter">
-    <div style="display: flex;">
-        <h3>{{if this.model.productId 'Edit' 'Create'}} Product</h3>
-        <div class="mb-05 mr-10" style="margin-left: auto;">
-            <button type="button" class="btn btn-primary" {{action 'save'}}>Save</button>
-            <button type="button" class="ml-10 btn btn-primary" {{action 'cancel'}}>Cancel</button>
+{{#in-element this.currentUser.wormholeContainerElement}}
+    <header class="fixed-filter">
+        <div style="display: flex;">
+            <h3>{{if this.model.productId 'Edit' 'Create'}} Product</h3>
+            <div class="mb-05 mr-10" style="margin-left: auto;">
+                <button type="button" class="btn btn-primary" {{action 'save'}}>Save</button>
+                <button type="button" class="ml-10 btn btn-primary" {{action 'cancel'}}>Cancel</button>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+{{/in-element}}
 <form class="save-product-form mt-20" data-bs-toggle="validator" role="form">
 <section>
     <div class="row">

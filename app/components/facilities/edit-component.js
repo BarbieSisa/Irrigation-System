@@ -30,12 +30,13 @@ export default class FacilitiesEditComponent extends BaseComponent {
     if (this.model.facilityId == null) {
       options = {
         adapterOptions: {
-          endPoint: "facilities/create-fac",
+          endPoint: "facilities/create-facility",
         }
       }
     }
     await this.model.save(options);
     this.notify.success('Saved!');
+    return await this.router.transitionTo('home.facilities.view', this.model.facilityId)
   }
 
   @action

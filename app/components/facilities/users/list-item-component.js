@@ -4,8 +4,12 @@ import { inject as service } from '@ember/service';
 export default class FacilityUsersListItemComponent extends InfinityScrollItemComponent {
   @service('user-access-managing') userAccessManagingService;
   
-  @computed('facility.facilityId', 'facility.facilityParties.@each.{partyRoleTypeId,partyId}', 'party.partyId')
+  @computed('facility.facilityId', 'facility.isDeleted', 'facility.isDestroyed', 'facility.isDestroying', 'facility.facilityParties.@each.{partyRoleTypeId,partyId}', 'party.partyId')
   get hasFacAccess() {
+    let facilityIsUnderDestruction = this.get('facility.isDeleted') || this.get('facility.isDestroyed') || this.get('facility.isDestroying');
+    if (facilityIsUnderDestruction) {
+      return false;
+    }
     let facilityParty = (this.get('facility.facilityParties') || []).find(p => p.get('party.partyId') == this.get('party.partyId'));
     if (facilityParty) {
       if (facilityParty.get('partyRoleType.roleTypeId') == this.roleTypes.FACILITY_PARTY_ROLE_RESTRICTED_ID) {

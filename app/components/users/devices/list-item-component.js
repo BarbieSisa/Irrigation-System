@@ -3,6 +3,6 @@ import { action } from '@ember/object';
 export default class UsersDevicesListItemComponent extends InfinityScrollItemComponent {
   @action
   gotoDevice(deviceId){
-    this.router.transitionTo('home.devices.edit', deviceId);
+    this.router.transitionTo('home.devices.view', deviceId);
   }
 }

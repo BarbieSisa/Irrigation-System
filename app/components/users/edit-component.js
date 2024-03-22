@@ -49,8 +49,9 @@ export default class UsersEditComponent extends BaseComponent {
         }
       }
     }
-    await getObject(this.model.user).save(options);
+    let user = await getObject(this.model.user).save(options);
     this.notify.success('Saved!');
+    return await this.router.transitionTo('home.users.view', user.get('party.partyId'))
   }
 
   @action

@@ -9,4 +9,16 @@ export default class UsersViewController extends BaseController {
   edit(userId) {
     this.router.transitionTo('home.users.edit', userId)
   }
+  @action
+  async deleteUser() {
+    try {
+      await getObject(this.model.get('user')).destroyRecord();
+      this.notify.warning('User deleted!');
+      this.model.customUnloadRecord();
+      return this.router.transitionTo('home.users.index');
+    } catch (error) {
+      this.notify.error("Something went wrong..");
+      console.log(error)
+    }
+  };
 }

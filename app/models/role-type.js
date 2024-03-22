@@ -26,7 +26,7 @@ export default class RoleTypeModel extends BaseModel {
     } else if (this.get('roleTypeCode') == this.roleTypes.USER_ROLE_SUPER_USER) {
       return 'Super User';
     } else if (this.get('roleTypeCode') == this.roleTypes.USER_ROLE_CUSTOMER) {
-      return 'Customer';
+      return 'Basic User';
     }
     return null;
   }
