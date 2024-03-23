@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 export default class DeviceLockService extends Service {
   @service store;
   @service('custom-fetch') customFetch;
+  @service notify;
 
   checkDeviceLockKeyMatch(lockModel,deviceId){
     if (!deviceId) {
@@ -65,7 +66,7 @@ export default class DeviceLockService extends Service {
         if (keyFromSessionStorage || overwriteLock) {
           let data = await this.customFetch.makeRequest({
             type: "POST",
-            endPoint: entityModelName + "devices/" + deviceId + "/locks",
+            endPoint: "devices/" + deviceId + "/locks",
             queryParams:{
               force:overwriteLock
             }

@@ -1,0 +1,20 @@
+   <Popup::BaseModalComponent @showModal={{@showModal}}>
+    <Popup::HeaderComponent @title="Device is already being edited" @onClose={{action this.onCloseModal}}>
+        <span {{action 'confirm'}}>Confirm</span>
+    </Popup::HeaderComponent>
+    <Popup::BodyComponent>
+        <div class="alert alert-warning" role="alert">
+          <h4>
+            <div class="mb-20">{{this.context}} is currently being edited by:</div>
+            <div class="mb-20">
+              {{#if this.editingUserIsCurrentUser}}
+                <a {{action 'gotoUser'}}>Yourself (Possibly from another tab)</a>
+              {{else}}
+                <a {{action 'gotoUser'}}>{{this.lockModel.user.firstName}} {{this.lockModel.user.lastName}}</a>
+              {{/if}}
+            </div>
+          </h4>
+          <div>Would you like to continue and overwrite their changes?</div>
+        </div>
+    </Popup::BodyComponent>
+   </Popup::BaseModalComponent> 

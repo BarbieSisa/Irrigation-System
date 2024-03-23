@@ -1,0 +1,49 @@
+<div class="panel panel-default" style="flex-grow: 0.3;">
+    <div class="panel-heading mb-20">Pump {{add this.pumpSetting.idx 1}}</div>
+    <div class="panel-body">
+        <div class="row">
+            <CustomFormComponent 
+                @columnSize={{10}} 
+                @cssClass="mb-3" 
+                @max="45"
+                @label="Mode"
+                @componentType="select" 
+                @value={{readonly this.pumpSetting.type}}
+                @required={{true}}
+                @disabled={{this.disabled}}
+                @onChange={{action (mut this.pumpSetting.type)}}>
+                    <option value=0 selected={{opt-is-equal this.pumpSetting.type 0}}>Pump is disabled</option>
+                    <option value=1 selected={{opt-is-equal this.pumpSetting.type 1}}>Fixed flow rate dosing</option>
+            </CustomFormComponent>
+        </div>
+        {{#if (is-equal this.pumpSetting.type 1)}}
+            <div class="row">
+                <CustomFormComponent 
+                    @columnSize={{10}} 
+                    @cssClass="mb-3" 
+                    @max="45"
+                    @label="Product"
+                    @componentType="select" 
+                    @value={{readonly this.pumpSetting.productId}}
+                    @required={{true}}
+                    @disabled={{this.disabled}}
+                    @onChange={{action (mut this.pumpSetting.productId)}}>
+                        {{#each this.facilityProducts as |product|}}
+                            <option value={{product.productId}} selected={{opt-is-equal this.pumpSetting.productId product.productId}}>{{product.productName}}</option>
+                        {{/each}}
+                </CustomFormComponent>
+            </div>
+
+            <div class="row">
+                <CustomFormComponent 
+                    @columnSize={{10}} 
+                    @cssClass="mb-3" 
+                    @componentType="number" 
+                    @value={{this.pumpSetting.flowrate}} 
+                    @required={{true}}
+                    @disabled={{this.disabled}}
+                    @label="Flow rate, ml/min" />
+            </div>
+        {{/if}}
+    </div>
+</div>

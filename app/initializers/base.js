@@ -48,7 +48,6 @@ export function initialize() {
       }
     }
   }
-  
   window.removeMainObj = (obj,propName,primaryKey,mainId) => {
     for (var k in obj) {
       if (typeof obj[k] == "object") {
@@ -143,7 +142,42 @@ export function initialize() {
     }
     return str;
   };
+};
+
+window.copyObject = function (obj) {
+  if(obj==null){
+    return null;
+  }
+  return JSON.parse(JSON.stringify(obj));
+};
+
+window.bit_test = function (num, bit) {
+  return ((num >> bit) % 2 != 0);
 }
+window.bit_set = function (num, bit) {
+  return num | 1 << bit;
+}
+
+window.bit_clear = function (num, bit) {
+  return num & ~(1 << bit);
+}
+
+window.bit_toggle = function (num, bit) {
+  return bit_test(num, bit) ? bit_clear(num, bit) : bit_set(num, bit);
+}
+
+window._getNumber = function (val) {
+  try {
+    val = JSON.parse(val);
+    if (isNaN(val)) {
+      return null;
+    } else {
+      return val;
+    }
+  } catch (ex) {
+    return null;
+  }
+};
 export default {
   name: 'utils',
   initialize

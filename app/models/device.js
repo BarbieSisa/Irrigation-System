@@ -11,7 +11,7 @@ export default class DeviceModel extends BaseModel {
   }) fromDate;    
   @attr('number') thruDate;   
   @attr('string') deviceProductsToRemove;       
-
+  @attr('string') configData;
   @belongsTo('device-type', { async: true, inverse: null }) deviceType;    
   @belongsTo('facility', { async: true, inverse: 'devices' }) facility;  
 
