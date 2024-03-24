@@ -31,7 +31,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
     try {
       this.loadingSettings = true;
       let config = await this.baseFunctions.loadDeviceConfig(this.model);
-      this.config = config;
+      this.config = config || {};
       let facilityProducts = await this.loadFacilityProducts();
       this.facilityProducts = facilityProducts;
       let deviceSettings = {

@@ -17,6 +17,8 @@
             @onChange={{this.onChange}} 
             @disabled={{this.disabled}} 
             @required={{this.required}} /> 
+        {{else if (is-equal this.componentType 'checkbox')}}
+            <Input @type="checkbox" @checked={{mut this.value}} disabled={{this.disabled}} onchange={{action 'onRawInputChange'}}/> 
         {{else}}
             <Input 
             @type={{this.componentType}} 

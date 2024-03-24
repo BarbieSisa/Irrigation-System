@@ -15,7 +15,7 @@
     </header>
 {{/in-element}}
 <form class="save-device-settings-form mt-50" data-bs-toggle="validator" role="form">
-<section class="autocomplete-list-big">
+<section class="device-settings-big">
     {{#if this.loadingSettings}}
         <LoaderComponent @smallLoader={{true}}/>
     {{else}}
@@ -41,7 +41,7 @@
                 </div>
             {{else if (is-equal this.selectedTab 'schedules')}}
                 <div class="tab-pane fade show active" id="setting-tab2" role="tabpanel" aria-labelledby="setting-tab2-tab">
-
+                    <Devices::Settings::ScheduleListComponent @deviceSettings={{this.deviceSettings}} @disabled={{this.disabled}}/>
                 </div>
             {{else if (is-equal this.selectedTab 'otherSettings')}}
                 <div class="tab-pane fade show active" id="setting-tab3" role="tabpanel" aria-labelledby="setting-tab3-tab">

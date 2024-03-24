@@ -1,0 +1,74 @@
+<ul class="nav nav-tabs custom-tabs mb-20">
+    {{#each this.deviceSettings.scheduledSettings as |scheduleSetting|}}
+        <li class="nav-item" {{action 'changeScheduleTab' scheduleSetting.idx}}>
+            <a class="nav-link {{if (is-equal this.selectedSchedule.idx scheduleSetting.idx) 'active'}}" id="schedule-tab{{scheduleSetting.idx}}-tab" data-bs-toggle="tab" href="#schedule-tab{{scheduleSetting.idx}}" role="tab" aria-controls="setting-tab{{scheduleSetting.idx}}" aria-selected={{is-equal this.selectedSchedule.idx scheduleSetting.idx}}>{{scheduleSetting.codeName}}</a>
+        </li>
+    {{/each}}
+</ul>
+{{#if this.scheduleLoading}}
+    <LoaderComponent @smallLoader={{true}}/>
+{{else}}
+    <div class="row">
+        <CustomFormComponent 
+        @columnSize={{4}} 
+        @cssClass="mb-3" 
+        @label="Mode" 
+        @componentType="select"
+        @value={{readonly this.selectedSchedule.type}} 
+        @required={{true}} 
+        @disabled={{this.disabled}}
+        @onChange={{action (mut this.selectedSchedule.type)}}>
+            <option value=0 selected={{opt-is-equal this.selectedSchedule.type 0}}>Disabled</option>
+            <option value=1 selected={{opt-is-equal this.selectedSchedule.type 1}}>Fixed intervals</option>
+        </CustomFormComponent>
+    </div>
+
+    {{#if this.selectedSchedule.type}}
+        <div class="row">
+            <div style="display: flex;">
+                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day1}} @onChange={{action (mut this.selectedSchedule.day1)}} @label="Monday" @disabled={{this.disabled}} />
+                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day2}} @onChange={{action (mut this.selectedSchedule.day2)}} @label="Tuesday" @disabled={{this.disabled}} />
+                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day3}} @onChange={{action (mut this.selectedSchedule.day3)}} @label="Wednesday" @disabled={{this.disabled}} />
+                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day4}} @onChange={{action (mut this.selectedSchedule.day4)}} @label="Thursday" @disabled={{this.disabled}} />
+                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day5}} @onChange={{action (mut this.selectedSchedule.day5)}} @label="Friday" @disabled={{this.disabled}} />
+                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day6}} @onChange={{action (mut this.selectedSchedule.day6)}} @label="Saturday" @disabled={{this.disabled}} />
+                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day0}} @onChange={{action (mut this.selectedSchedule.day0)}} @label="Sunday" @disabled={{this.disabled}} />
+            </div>
+        </div>
+
+        {{#if (is-equal this.selectedSchedule.type 1)}}
+            <div class="row mt-10">
+                <CustomFormComponent 
+                @columnSize={{4}} 
+                @cssClass="mb-3" 
+                @componentType="number" 
+                @value={{this.selectedSchedule.intvl}} 
+                @required={{true}}
+                @step={{1}}
+                @min={{180}} 
+                @max={{10800}}
+                @disabled={{this.disabled}}
+                @label="Dosing interval, s" />
+            </div>
+        {{/if}}
+
+        <div class="mt-10" style="display: flex;">
+            {{#each this.deviceSettings.pumpSettings as |pumpSetting|}}
+                <div class="panel panel-{{if pumpSetting.type 'success' 'danger'}}" style="flex-grow: 0.3;">
+                    <div class="panel-heading">Pump {{add pumpSetting.idx 1}}</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <CustomFormComponent 
+                            @columnSize={{10}} 
+                            @cssClass="mb-3" 
+                            @label="Quantity, ml" 
+                            @value={{get this.selectedSchedule (concat 'q' pumpSetting.idx)}} 
+                            @componentType="number" 
+                            @disabled={{this.disabled}} />
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+{{/if}}

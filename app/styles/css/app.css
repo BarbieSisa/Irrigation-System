@@ -639,6 +639,15 @@ body {
   /* Optional: Add rounded corners */
 }
 
+.device-settings-big {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid #ced4da;
+  /* Adjust color as needed */
+  border-radius: 4px;
+  /* Optional: Add rounded corners */
+}
+
 .custom-tabs .nav-item {
   margin-bottom: 0;
 }
