@@ -1,21 +1,20 @@
 
 <CustomFormComponent 
-@columnSize={{4}} 
-@cssClass="mb-3" 
-@label="Time Period"
-@componentType="select" 
-@value={{readonly @timeFrame}}
-@required={{this.required}}
-@disabled={{this.disabled}}
-@onChange={{action 'setTimeFrame'}}>
-    <option value='Today' selected={{opt-is-equal @timeFrame 'Today'}}>Today</option>
-    <option value="Yesterday" selected={{opt-is-equal @timeFrame 'Yesterday'}}>Yesterday</option>
-    <option value="Custom" selected={{opt-is-equal @timeFrame 'Custom'}}>Custom</option>
+    @columnSize={{4}} 
+    @cssClass="mb-3" 
+    @label="Time Period"
+    @componentType="select" 
+    @value={{readonly @timeFrame}}
+    @required={{this.required}}
+    @disabled={{this.disabled}}
+    @onChange={{action 'setTimeFrame'}}>
+        <option value='Today' selected={{opt-is-equal @timeFrame 'Today'}}>Today</option>
+        <option value="Yesterday" selected={{opt-is-equal @timeFrame 'Yesterday'}}>Yesterday</option>
+        <option value="Custom" selected={{opt-is-equal @timeFrame 'Custom'}}>Custom</option>
 </CustomFormComponent>
 
-<div style="display: flex;">
-    {{#if (is-equal this.timeFrame 'Custom')}}
-        <CustomFormComponent 
+{{#if (is-equal this.timeFrame 'Custom')}}
+    <CustomFormComponent 
         @columnSize={{3}} 
         @cssClass="mb-3" 
         @componentType="date" 
@@ -24,7 +23,7 @@
         @onChange={{action 'setFromDate'}} 
         @label="Start date" />
 
-        <CustomFormComponent 
+    <CustomFormComponent 
         @columnSize={{3}} 
         @cssClass="mb-3" 
         @componentType="date" 
@@ -32,5 +31,4 @@
         @required={{this.required}}
         @onChange={{action 'setThruDate'}} 
         @label="End date" />
-    {{/if}}
-</div>
+{{/if}}
