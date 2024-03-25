@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import Chart from 'chart.js/auto'
 import BaseComponent from 'irrigation-system/base-elements/base-component';
 import { action, computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
 export default class DevicesSettingsComponent extends BaseComponent {
   @service('device-type') deviceTypes;
   @service('device-lock-service') deviceLockService;
@@ -22,6 +24,32 @@ export default class DevicesSettingsComponent extends BaseComponent {
     return await this.loadDeviceSettings();
   }
 
+  addNewChart(){
+    const data = [
+      { date: '24.03.2024', consumption: 1000 },
+      { date: '25.03.2024', consumption: 2000 },
+    ];
+
+    return new Chart(
+      document.getElementById('consumptionChart'),
+      {
+        type: 'pie',
+        data: {
+          labels: data.map(row => row.date),
+          datasets: [
+            {
+              label: 'Consumption by days',
+              data: data.map(row => row.consumption)
+            }
+          ]
+        },
+        options: {
+            maintainAspectRatio: false,
+        }
+      }
+    );
+  };
+  
   @computed('mode')
   get disabled(){
     return this.mode == 'VIEW';
@@ -354,4 +382,11 @@ export default class DevicesSettingsComponent extends BaseComponent {
       console.log(error)
     }
   };
+  @action
+  fetchConsumption(){
+    this.selectedTab = 'reports';
+    scheduleOnce('afterRender', this, function () {
+      this.addNewChart();
+    });
+  }
 }

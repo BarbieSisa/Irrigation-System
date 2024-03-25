@@ -30,6 +30,9 @@
         <li class="nav-item" {{action (mut this.selectedTab) 'otherSettings'}}>
             <a class="nav-link {{if (is-equal this.selectedTab 'otherSettings') 'active'}}" id="setting-tab3-tab" data-bs-toggle="tab" href="#setting-tab3" role="tab" aria-controls="setting-tab3" aria-selected="true">Other settings</a>
         </li>
+        <li class="nav-item" {{action 'fetchConsumption'}}>
+            <a class="nav-link {{if (is-equal this.selectedTab 'reports') 'active'}}" id="setting-tab4-tab" data-bs-toggle="tab" href="#setting-tab4" role="tab" aria-controls="setting-tab4" aria-selected="true">Consumption</a>
+        </li>
         </ul>
         <div class="tab-content ml-20 mt-20">
             {{#if (is-equal this.selectedTab 'pumps')}}
@@ -58,6 +61,8 @@
                             @label="Device name" />
                     </div>
                 </div>
+            {{else if (is-equal this.selectedTab 'reports')}}
+                <canvas style="height: 400px" id="consumptionChart"></canvas>
             {{/if}}
         </div>
     {{/if}}
