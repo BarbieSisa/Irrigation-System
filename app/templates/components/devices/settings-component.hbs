@@ -21,6 +21,9 @@
         <LoaderComponent @smallLoader={{true}}/>
     {{else}}
         <ul class="nav nav-tabs custom-tabs">
+        <li class="nav-item" {{action 'fetchConsumption'}}>
+            <a class="nav-link {{if (is-equal this.selectedTab 'consumption') 'active'}}" id="setting-tab4-tab" data-bs-toggle="tab" href="#setting-tab4" role="tab" aria-controls="setting-tab4" aria-selected="true">Consumption</a>
+        </li>
         <li class="nav-item" {{action (mut this.selectedTab) 'pumps'}}>
             <a class="nav-link {{if (is-equal this.selectedTab 'pumps') 'active'}}" id="setting-tab1-tab" data-bs-toggle="tab" href="#setting-tab1" role="tab" aria-controls="setting-tab1" aria-selected="true">Pumps</a>
         </li>
@@ -29,9 +32,6 @@
         </li>
         <li class="nav-item" {{action (mut this.selectedTab) 'otherSettings'}}>
             <a class="nav-link {{if (is-equal this.selectedTab 'otherSettings') 'active'}}" id="setting-tab3-tab" data-bs-toggle="tab" href="#setting-tab3" role="tab" aria-controls="setting-tab3" aria-selected="true">Other settings</a>
-        </li>
-        <li class="nav-item" {{action 'fetchConsumption'}}>
-            <a class="nav-link {{if (is-equal this.selectedTab 'reports') 'active'}}" id="setting-tab4-tab" data-bs-toggle="tab" href="#setting-tab4" role="tab" aria-controls="setting-tab4" aria-selected="true">Consumption</a>
         </li>
         </ul>
         <div class="tab-content ml-20 mt-20">
@@ -61,8 +61,22 @@
                             @label="Device name" />
                     </div>
                 </div>
-            {{else if (is-equal this.selectedTab 'reports')}}
-                <canvas style="height: 400px" id="consumptionChart"></canvas>
+            {{else if (is-equal this.selectedTab 'consumption')}}
+                <div class="row">
+                    <Utils::CustomSelectComponents::TimeFrameSelectComponent
+                    @timeFrame={{readonly this.timeFrame}}
+                    @fromDate={{readonly this.fromDate}}
+                    @thruDate={{readonly this.thruDate}}
+                    @onChange={{action 'changeSelectedPeriod'}}/>
+                </div>
+                <div style="display: flex;">
+                    <div class="row" style="flex-grow: 6;">
+                        <canvas style="height: 300px" id="consumptionBarChart"></canvas>
+                    </div>
+                    <div class="row" style="flex-grow: 6;">
+                        <canvas style="height: 300px" id="consumptionPieChart"></canvas>
+                    </div>
+                </div>
             {{/if}}
         </div>
     {{/if}}

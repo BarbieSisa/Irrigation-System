@@ -10,7 +10,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
   @service('device-lock-service') deviceLockService;
   @service('base-functions') baseFunctions;
 
-  @tracked selectedTab = 'pumps';
+  @tracked selectedTab = 'consumption';
   @tracked mode = "VIEW";
   @tracked currentLockEntity;
   @tracked facilityProducts = [];
@@ -18,36 +18,68 @@ export default class DevicesSettingsComponent extends BaseComponent {
   @tracked config;
   @tracked showOverwriteLockModal = false;
   @tracked loadingSettings = false;
-
+  @tracked timeFrame = "Today";
+  @tracked fromDate = this.baseFunctions.getBeginningOfDay();
+  @tracked thruDate = this.baseFunctions.getEndOfDay();
+  
   async init() {
     super.init(...arguments);
-    return await this.loadDeviceSettings();
+    await this.loadDeviceSettings();
+    this.loadConsumptionData();
   }
 
-  addNewChart(){
-    const data = [
-      { date: '24.03.2024', consumption: 1000 },
-      { date: '25.03.2024', consumption: 2000 },
-    ];
-
-    return new Chart(
-      document.getElementById('consumptionChart'),
-      {
-        type: 'pie',
-        data: {
-          labels: data.map(row => row.date),
-          datasets: [
-            {
-              label: 'Consumption by days',
-              data: data.map(row => row.consumption)
-            }
-          ]
-        },
-        options: {
-            maintainAspectRatio: false,
-        }
+  loadConsumptionData(){
+    scheduleOnce('afterRender', this, function () {
+      const data = [
+        { date: '24.03.2024', consumption: 1000 },
+        { date: '25.03.2024', consumption: 2000 },
+      ];
+      let barChartStatus = Chart.getChart("consumptionBarChart"); // <canvas> id
+      if (barChartStatus != undefined) {
+        barChartStatus.destroy();
       }
-    );
+      let pieChartStatus = Chart.getChart("consumptionPieChart"); // <canvas> id
+      if (pieChartStatus != undefined) {
+        pieChartStatus.destroy();
+      }
+      new Chart(
+        document.getElementById('consumptionPieChart'),
+        {
+          type: 'pie',
+          data: {
+            labels: data.map(row => row.date),
+            datasets: [
+              {
+                label: 'Consumption by days',
+                data: data.map(row => row.consumption)
+              }
+            ]
+          },
+          options: {
+              maintainAspectRatio: false,
+          }
+        }
+      );
+
+      new Chart(
+        document.getElementById('consumptionBarChart'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.date),
+            datasets: [
+              {
+                label: 'Consumption by days',
+                data: data.map(row => row.consumption)
+              }
+            ]
+          },
+          options: {
+              maintainAspectRatio: false,
+          }
+        }
+      );
+    });
   };
   
   @computed('mode')
@@ -364,6 +396,9 @@ export default class DevicesSettingsComponent extends BaseComponent {
 
   @action
   async reload(){
+    if (this.selectedTab == 'consumption') {
+      return this.loadConsumptionData()
+    }
     return await this.loadDeviceSettings();
   };
 
@@ -384,9 +419,14 @@ export default class DevicesSettingsComponent extends BaseComponent {
   };
   @action
   fetchConsumption(){
-    this.selectedTab = 'reports';
-    scheduleOnce('afterRender', this, function () {
-      this.addNewChart();
-    });
+    this.selectedTab = 'consumption';
+    this.loadConsumptionData();
+  };
+  @action
+  changeSelectedPeriod(timeFrame, fromDate, thruDate){
+    this.timeFrame = timeFrame;
+    this.fromDate = fromDate;
+    this.thruDate = thruDate;
+    this.loadConsumptionData();
   }
 }

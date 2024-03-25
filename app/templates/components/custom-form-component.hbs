@@ -19,6 +19,18 @@
             @required={{this.required}} /> 
         {{else if (is-equal this.componentType 'checkbox')}}
             <Input @type="checkbox" @checked={{mut this.value}} disabled={{this.disabled}} onchange={{action 'onRawInputChange'}}/> 
+        {{else if (is-equal this.componentType 'date')}}
+            <Input  
+            @type='date'  
+            @value={{readonly this.internalDateValue}}  
+            disabled={{this.disabled}}  
+            label={{this.label}}  
+            required={{this.required}}  
+            onchange={{action 'onDateChange'}}  
+            onkeydown={{action 'onDateKeyDown'}} 
+            class={{concat 'form-control' ' date-component-' this.componentId ' ' this.cssClass}}
+            min={{this.min}}  
+            max={{this.max}} /> 
         {{else}}
             <Input 
             @type={{this.componentType}} 

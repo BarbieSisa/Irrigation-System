@@ -72,4 +72,21 @@ export default class BaseFunctions extends Service {
     }
     return config ? config : null;
   };
+
+  getDateOnly(dateTime){
+    dateTime = new Date(dateTime || new Date());
+    return new Date(dateTime.getFullYear(),dateTime.getMonth(),dateTime.getDate()).getTime();
+  };
+
+  getBeginningOfDay(date){
+    return this.getDateOnly(date);
+  };
+
+  getEndOfDay(date){
+    date = new Date(this.getDateOnly(date));
+    date.setSeconds(59);
+    date.setMinutes(59);
+    date.setHours(23);
+    return date.getTime();
+  };
 }
