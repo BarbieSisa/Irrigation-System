@@ -8,7 +8,7 @@ import { scheduleOnce } from '@ember/runloop';
 export default class DevicesSettingsComponent extends BaseComponent {
   @service('device-type') deviceTypes;
   @service('device-lock-service') deviceLockService;
-  @service('base-functions') baseFunctions;
+  @service('custom-fetch') customFetch;
 
   @tracked selectedTab = 'consumption';
   @tracked mode = "VIEW";
@@ -18,6 +18,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
   @tracked config;
   @tracked showOverwriteLockModal = false;
   @tracked loadingSettings = false;
+  @tracked loadingConsumption = false;
   @tracked timeFrame = "Today";
   @tracked fromDate = this.baseFunctions.getBeginningOfDay();
   @tracked thruDate = this.baseFunctions.getEndOfDay();
@@ -25,38 +26,63 @@ export default class DevicesSettingsComponent extends BaseComponent {
   async init() {
     super.init(...arguments);
     await this.loadDeviceSettings();
-    this.loadConsumptionData();
+    await this.loadConsumptionData();
   }
 
-  loadConsumptionData(){
+  async loadConsumptionData(){
+    let barChartStatus = Chart.getChart("consumptionBarChart");
+    if (barChartStatus != undefined) {
+      barChartStatus.destroy();
+    }
+    let pieChartStatus = Chart.getChart("consumptionPieChart");
+    if (pieChartStatus != undefined) {
+      pieChartStatus.destroy();
+    }
+    this.loadingConsumption = true;
+    await this.customFetch.makeRequest({
+      endPoint: "events/consumption",
+      type: "GET",
+      queryParams:{
+        deviceId:this.model.deviceId,
+        fromDate:this.fromDate,
+        thruDate:this.thruDate,
+        pageNumber:1,
+        pageSize:2147483647
+      }
+    });
+    this.loadingConsumption = false;
     scheduleOnce('afterRender', this, function () {
-      const data = [
+      const barDataWater = [
         { date: '24.03.2024', consumption: 1000 },
         { date: '25.03.2024', consumption: 2000 },
+        { date: '26.03.2024', consumption: 3000 },
+        { date: '27.03.2024', consumption: 4000 },
       ];
-      let barChartStatus = Chart.getChart("consumptionBarChart"); // <canvas> id
-      if (barChartStatus != undefined) {
-        barChartStatus.destroy();
-      }
-      let pieChartStatus = Chart.getChart("consumptionPieChart"); // <canvas> id
-      if (pieChartStatus != undefined) {
-        pieChartStatus.destroy();
-      }
+      const barDataVodka = [
+        { date: '24.03.2024', consumption: 2000 },
+        { date: '25.03.2024', consumption: 4000 },
+        { date: '26.03.2024', consumption: 6000 },
+        { date: '27.03.2024', consumption: 8000 },
+      ];
+      const pieData = [
+        { product: 'Water', consumption: 10000 },
+        { product: 'Vodka', consumption: 20000 },
+      ];
       new Chart(
         document.getElementById('consumptionPieChart'),
         {
           type: 'pie',
           data: {
-            labels: data.map(row => row.date),
+            labels: pieData.map(row => row.product),
             datasets: [
               {
-                label: 'Consumption by days',
-                data: data.map(row => row.consumption)
+                label: '',
+                data: pieData.map(row => row.consumption)
               }
             ]
           },
           options: {
-              maintainAspectRatio: false,
+              maintainAspectRatio: false
           }
         }
       );
@@ -66,16 +92,27 @@ export default class DevicesSettingsComponent extends BaseComponent {
         {
           type: 'bar',
           data: {
-            labels: data.map(row => row.date),
+            labels: barDataWater.map(row => row.date),
             datasets: [
               {
-                label: 'Consumption by days',
-                data: data.map(row => row.consumption)
+                label: 'Consumed Water',
+                data: barDataWater.map(row => row.consumption)
+              },
+              {
+                label: 'Consumed Vodka',
+                data: barDataVodka.map(row => row.consumption)
               }
             ]
           },
           options: {
               maintainAspectRatio: false,
+              scales: {
+                y: {
+                  ticks: {
+                    callback: (label) => `${label} ml`,
+                  },
+                },
+              },
           }
         }
       );
@@ -424,9 +461,13 @@ export default class DevicesSettingsComponent extends BaseComponent {
   };
   @action
   changeSelectedPeriod(timeFrame, fromDate, thruDate){
+    let skipRequest = timeFrame == 'Custom' && this.timeFrame != timeFrame;
     this.timeFrame = timeFrame;
     this.fromDate = fromDate;
     this.thruDate = thruDate;
+    if (skipRequest) {
+      return;
+    }
     this.loadConsumptionData();
   }
 }

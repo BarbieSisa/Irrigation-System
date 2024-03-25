@@ -20,7 +20,7 @@ export default class TimeFrameSelectComponent extends BaseComponent {
     let thruDate = this.thruDate;
     if (value == 'Today') {
       fromDate = this.baseFunctions.getBeginningOfDay();
-      thruDate = this.getEndOfDay;
+      thruDate = this.baseFunctions.getEndOfDay();
     }
     if (value == 'Yesterday') {
       let yesterday = new Date();

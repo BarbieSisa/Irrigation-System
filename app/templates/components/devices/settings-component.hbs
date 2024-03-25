@@ -69,14 +69,18 @@
                     @thruDate={{readonly this.thruDate}}
                     @onChange={{action 'changeSelectedPeriod'}}/>
                 </div>
-                <div style="display: flex;">
-                    <div class="row" style="flex-grow: 6;">
-                        <canvas style="height: 300px" id="consumptionBarChart"></canvas>
+                {{#if this.loadingConsumption}}
+                    <LoaderComponent @smallLoader={{true}}/>
+                {{else}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas style="height: 300px;" id="consumptionBarChart"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <canvas style="height: 300px;" id="consumptionPieChart"></canvas>
+                        </div>
                     </div>
-                    <div class="row" style="flex-grow: 6;">
-                        <canvas style="height: 300px" id="consumptionPieChart"></canvas>
-                    </div>
-                </div>
+                {{/if}}
             {{/if}}
         </div>
     {{/if}}
