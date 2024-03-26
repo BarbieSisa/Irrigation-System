@@ -68,14 +68,24 @@ export default class CustomFormComponent extends BaseComponent {
   doChangeDate(value) {
     if (this.onChange) {
       if (value) {
-        let dateParts = value.split("-");
-        let year = parseInt(dateParts[0]);
-        let month = parseInt(dateParts[1]) - 1;
-        let date = parseInt(dateParts[2]);
-        let finalTimestamp = new Date(year, month, date).getTime();
-        if (finalTimestamp <= 0) {
-          finalTimestamp = new Date().getTime();
+        let finalTimestamp = null;
+        if (value.indexOf('T') != -1) {
+          let dateObj = new Date(value);
+          finalTimestamp = dateObj.getTime();
+          if (finalTimestamp <= 0) {
+            finalTimestamp = new Date().getTime();
+          }
+        } else {
+          let dateParts = value.split("-");
+          let year = parseInt(dateParts[0]);
+          let month = parseInt(dateParts[1]) - 1;
+          let date = parseInt(dateParts[2]);
+          finalTimestamp = new Date(year, month, date).getTime();
+          if (finalTimestamp <= 0) {
+            finalTimestamp = new Date().getTime();
+          }
         }
+
         this.onChange(finalTimestamp);
       } else {
         this.onChange(null);

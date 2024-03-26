@@ -3,8 +3,8 @@ import { action } from '@ember/object';
 export default class TimeFrameSelectComponent extends BaseComponent {
   tagName = '';
   setTimeFrameOption(value, fromDate, thruDate) {
-    fromDate = fromDate ? this.baseFunctions.getBeginningOfDay(fromDate) : null;
-    thruDate = thruDate ? this.baseFunctions.getEndOfDay(thruDate) : null;
+    fromDate = fromDate ? fromDate : this.baseFunctions.getBeginningOfDay(fromDate);
+    thruDate = thruDate ? thruDate : this.baseFunctions.getEndOfDay(thruDate);
     if (this.onChange) {
       this.onChange(value, fromDate, thruDate);
     } else {
