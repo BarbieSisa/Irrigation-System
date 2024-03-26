@@ -62,7 +62,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
         return {
           productId: product.productId,
           productName: product.name,
-          consumption: (product.qty || 0) / 10
+          consumption: (product.qty || 0) / 10000
         }
       });
 
@@ -97,7 +97,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
         let productForDay = (consumptionData.data.results || []).find(p=>this.getDateStringFromTimeStamp(p.eventDate) == day).products.find(p=>p.productId == productId);
         let productDatasetReference = productDatasetsForBarChart.find(p=>p.productId == productId);
         if (productForDay != null) {
-          productDatasetReference.data.push(productForDay.qty / 10);
+          productDatasetReference.data.push(productForDay.qty / 10000);
         } else {
           productDatasetReference.data.push(0);
         }
@@ -141,7 +141,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
                 scales: {
                   y: {
                     ticks: {
-                      callback: (label) => `${label} ml`,
+                      callback: (label) => `${label} L`,
                     },
                   },
                 },
