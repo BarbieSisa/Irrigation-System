@@ -21,7 +21,7 @@
             <Input @type="checkbox" @checked={{mut this.value}} disabled={{this.disabled}} onchange={{action 'onRawInputChange'}}/> 
         {{else if (is-equal this.componentType 'date')}}
             <Input  
-            @type='date'  
+            @type='datetime-local'  
             @value={{readonly this.internalDateValue}}  
             disabled={{this.disabled}}  
             label={{this.label}}  

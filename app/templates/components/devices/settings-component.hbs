@@ -74,10 +74,18 @@
                 {{else}}
                     <div class="row">
                         <div class="col-md-6">
-                            <canvas style="height: 300px;" id="consumptionBarChart"></canvas>
+                            {{#if this.productDatasetsForBarChart.length}}
+                                <canvas style="height: 300px;" id="consumptionBarChart"></canvas>
+                            {{else}}
+                                <div class="alert alert-warning" style="text-align: center;" role="alert">No bar chart data.</div>
+                            {{/if}}
                         </div>
                         <div class="col-md-6">
-                            <canvas style="height: 300px;" id="consumptionPieChart"></canvas>
+                            {{#if this.productsForPieChart.length}}
+                                <canvas style="height: 300px;" id="consumptionPieChart"></canvas>
+                            {{else}}
+                                <div class="alert alert-warning" style="text-align: center;" role="alert">No pie chart data.</div>
+                            {{/if}}
                         </div>
                     </div>
                 {{/if}}

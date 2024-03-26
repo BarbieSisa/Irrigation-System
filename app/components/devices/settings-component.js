@@ -22,7 +22,9 @@ export default class DevicesSettingsComponent extends BaseComponent {
   @tracked timeFrame = "Today";
   @tracked fromDate = this.baseFunctions.getBeginningOfDay();
   @tracked thruDate = this.baseFunctions.getEndOfDay();
-  
+  @tracked productsForPieChart = [];
+  @tracked productDatasetsForBarChart = [];
+
   async init() {
     super.init(...arguments);
     await this.loadDeviceSettings();
@@ -39,7 +41,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
       pieChartStatus.destroy();
     }
     this.loadingConsumption = true;
-    await this.customFetch.makeRequest({
+    let consumptionData = await this.customFetch.makeRequest({
       endPoint: "events/consumption",
       type: "GET",
       queryParams:{
@@ -50,75 +52,112 @@ export default class DevicesSettingsComponent extends BaseComponent {
         pageSize:2147483647
       }
     });
+    consumptionData.data.results = consumptionData.data.results.sortBy("eventDate");
+    let productsForPieChart = [];
+    let uniqueDaysForBarChart = (consumptionData.data.results || []).map((dayResult) => {
+      return this.getDateStringFromTimeStamp(dayResult.eventDate);
+    }).uniq();
+    (consumptionData.data.results || []).forEach((dataByDay)=>{
+      let productsForDay = (dataByDay.products || []).map((product)=>{
+        return {
+          productId: product.productId,
+          productName: product.name,
+          consumption: (product.qty || 0) / 10
+        }
+      });
+
+      let productIdsForDay = productsForDay.map(p=>p.productId).uniq();
+      productIdsForDay.forEach((productId)=>{
+        let currentProductReference = productsForDay.find(p=>p.productId == productId)
+        if (currentProductReference != null) {
+          let uniqueProductReference = productsForPieChart.find(p=>p.productId == productId)
+          if (!uniqueProductReference) {
+            productsForPieChart.push({
+              productId: currentProductReference.productId,
+              productName: currentProductReference.productName,
+              consumption: currentProductReference.consumption
+            });
+          } else {
+            uniqueProductReference.consumption += currentProductReference.consumption;
+          }
+        }
+      })
+    })
+    productsForPieChart = productsForPieChart.sortBy('productName');
+    let productDatasetsForBarChart = productsForPieChart.map((p)=>{
+      return {
+        productId: p.productId,
+        label: p.productName,
+        data: []
+      }
+    });
+    let productsIdsForBarChart = productsForPieChart.map(p=>p.productId);
+    productsIdsForBarChart.forEach((productId)=>{
+      uniqueDaysForBarChart.forEach((day)=>{
+        let productForDay = (consumptionData.data.results || []).find(p=>this.getDateStringFromTimeStamp(p.eventDate) == day).products.find(p=>p.productId == productId);
+        let productDatasetReference = productDatasetsForBarChart.find(p=>p.productId == productId);
+        if (productForDay != null) {
+          productDatasetReference.data.push(productForDay.qty / 10);
+        } else {
+          productDatasetReference.data.push(0);
+        }
+      })
+    })
+    this.productsForPieChart = productsForPieChart;
+    this.productDatasetsForBarChart = productDatasetsForBarChart;
     this.loadingConsumption = false;
     scheduleOnce('afterRender', this, function () {
-      const barDataWater = [
-        { date: '24.03.2024', consumption: 1000 },
-        { date: '25.03.2024', consumption: 2000 },
-        { date: '26.03.2024', consumption: 3000 },
-        { date: '27.03.2024', consumption: 4000 },
-      ];
-      const barDataVodka = [
-        { date: '24.03.2024', consumption: 2000 },
-        { date: '25.03.2024', consumption: 4000 },
-        { date: '26.03.2024', consumption: 6000 },
-        { date: '27.03.2024', consumption: 8000 },
-      ];
-      const pieData = [
-        { product: 'Water', consumption: 10000 },
-        { product: 'Vodka', consumption: 20000 },
-      ];
-      new Chart(
-        document.getElementById('consumptionPieChart'),
-        {
-          type: 'pie',
-          data: {
-            labels: pieData.map(row => row.product),
-            datasets: [
-              {
-                label: '',
-                data: pieData.map(row => row.consumption)
-              }
-            ]
-          },
-          options: {
-              maintainAspectRatio: false
+      if (productsForPieChart.length) {
+        new Chart(
+          document.getElementById('consumptionPieChart'),
+          {
+            type: 'pie',
+            data: {
+              labels: productsForPieChart.map(row => row.productName),
+              datasets: [
+                {
+                  label: '',
+                  data: productsForPieChart.map(row => row.consumption)
+                }
+              ]
+            },
+            options: {
+                maintainAspectRatio: false
+            }
           }
-        }
-      );
-
-      new Chart(
-        document.getElementById('consumptionBarChart'),
-        {
-          type: 'bar',
-          data: {
-            labels: barDataWater.map(row => row.date),
-            datasets: [
-              {
-                label: 'Consumed Water',
-                data: barDataWater.map(row => row.consumption)
-              },
-              {
-                label: 'Consumed Vodka',
-                data: barDataVodka.map(row => row.consumption)
-              }
-            ]
-          },
-          options: {
-              maintainAspectRatio: false,
-              scales: {
-                y: {
-                  ticks: {
-                    callback: (label) => `${label} ml`,
+        );
+      }
+      if (productDatasetsForBarChart.length) {
+        new Chart(
+          document.getElementById('consumptionBarChart'),
+          {
+            type: 'bar',
+            data: {
+              labels: uniqueDaysForBarChart,
+              datasets: productDatasetsForBarChart
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    ticks: {
+                      callback: (label) => `${label} ml`,
+                    },
                   },
                 },
-              },
+            }
           }
-        }
-      );
+        );
+      }
     });
   };
-  
+  getDateStringFromTimeStamp(timeStamp){
+    if (!timeStamp) {
+      return "";
+    }
+    let dateObj = new Date(timeStamp);
+    return (dateObj.getDate() > 10 ? dateObj.getDate() : "0" + dateObj.getDate()) + "." + ((dateObj.getMonth() +  1) > 10 ? (dateObj.getMonth() +  1) : "0" + (dateObj.getMonth() +  1)) + "." + dateObj.getFullYear()
+  }
   @computed('mode')
   get disabled(){
     return this.mode == 'VIEW';
