@@ -10,6 +10,4 @@ export default class DeviceTypeModel extends BaseModel {
   @attr('number') thruDate;
 
   @belongsTo('application-type', { async: true, inverse: null }) applicationType;
-  @belongsTo('device-type-application', { async: true, inverse: null }) deviceTypeApplication;
-  @hasMany('event-type', { async: true, inverse: 'deviceType' }) eventTypes;
 }

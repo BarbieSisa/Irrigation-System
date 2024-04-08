@@ -4,7 +4,6 @@ export default class PartySerializer extends AppSerializer{
   attrs = {
     user: {serialize:'ids',deserialize:'records'},
     facilityParties: {serialize:false,deserialize:'records'},
-    person: {embedded: 'always'},
-    partyType: {embedded: 'always'},
+    person: {embedded: 'always'}
   }
 };
