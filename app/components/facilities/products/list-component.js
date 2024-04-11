@@ -9,8 +9,6 @@ export default class ProductsListComponent extends InfinityScrollComponent {
   refDoc = {
     productName: true,
     price:true,
-    remQty:true,
-    currency: {},
     facility: {},
     party:{
       user:{
@@ -20,11 +18,6 @@ export default class ProductsListComponent extends InfinityScrollComponent {
         }
       }
     },
-    productRatios:{
-      ratio:true,
-      toUom:{}
-    },
-    productType:{},
     uom:{}
   };
   queryParamsList = ['sortBy', 'orderBy', 'searchText', 'facilityId', 'refDoc'];

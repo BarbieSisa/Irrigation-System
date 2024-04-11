@@ -38,17 +38,6 @@ export default class ProductsEditComponent extends BaseComponent {
       this.model.price = this.price;
       this.model.productType = (this.productTypeService.get('all') || []).find(p=>p.get('productTypeCode') == this.productTypeService.FACILITY_PRODUCT);
       this.model.uom = (this.uomService.get('all') || []).find(p=>p.get('uomCode') == this.uomService.L)
-      var productRatio = this.model.get('productRatios.firstObject');
-      if (productRatio) {
-        productRatio.set('ratio', parseFloat(1.00));
-        this.model.set('productRatios', [productRatio]);
-      } else {
-        productRatio = this.store.createRecord('product-ratio', {
-          ratio: parseFloat(1.00),
-          toUom: (this.uomService.get('all') || []).find(p=>p.get('uomCode') == this.uomService.KG),
-        });
-        this.model.set('productRatios', [productRatio]);
-      }
       await this.model.save();
       this.notify.success('Saved!');
       return this.router.transitionTo('home.facilities.view', this.model.get('facility.facilityId'));
