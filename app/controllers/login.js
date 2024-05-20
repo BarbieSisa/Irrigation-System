@@ -22,13 +22,11 @@ export default class LoginController extends BaseController {
     }
     let email = this.get('email');
     let password = this.get('password');
-    let confirmationKey = this.get('confirmationKey');
 
     let session = this.get('session');
     await session.authenticate('authenticator:custom', {
         email,
-        password,
-        confirmationKey
+        password
       })
     document.removeEventListener("keyup", this.OnEnterFunc);
     await this.get('router').transitionTo('home');

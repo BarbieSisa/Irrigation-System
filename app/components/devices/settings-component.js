@@ -323,6 +323,7 @@ export default class DevicesSettingsComponent extends BaseComponent {
     let config = this.config;
     for (var i = 0; i < 4; i++) {
       var pumpSetting = copyObject(this.get('deviceSettings.pumpSettings')[i]);
+      pumpSetting.type = tryParse(pumpSetting.type);
         if (pumpSetting.type != null && pumpSetting.type != 0 && pumpSetting.productId) {
           pumpSetting.productId = parseInt(pumpSetting.productId);
           var deviceProduct = device.get('deviceProducts').find((item) => item.get('key') == 'q' + i);

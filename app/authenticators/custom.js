@@ -21,8 +21,7 @@ export default class CustomAuthenthicator extends Base {
       type: "POST",
       data: JSON.stringify({
         email: options.email,
-        password: options.password,
-        confirmationKey: options.confirmationKey
+        password: options.password
       })
     });
 
