@@ -865,6 +865,7 @@ body {
   overflow: hidden;
 }
 
-/* Classes applied for animating in/out */
-.custom-notify .ember-notify-show {}
-.custom-notify .ember-notify-hide {}
+
+.ember-notify-show.alert.alert-success {
+  background-color: #a3cfbb;
+}
