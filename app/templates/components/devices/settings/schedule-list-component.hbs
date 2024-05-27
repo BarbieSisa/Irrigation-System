@@ -26,14 +26,18 @@
     {{#if this.selectedSchedule.type}}
         <div class="row">
             <div style="display: flex;">
-                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day1}} @onChange={{action (mut this.selectedSchedule.day1)}} @label="Monday" @disabled={{this.disabled}} />
-                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day2}} @onChange={{action (mut this.selectedSchedule.day2)}} @label="Tuesday" @disabled={{this.disabled}} />
-                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day3}} @onChange={{action (mut this.selectedSchedule.day3)}} @label="Wednesday" @disabled={{this.disabled}} />
-                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day4}} @onChange={{action (mut this.selectedSchedule.day4)}} @label="Thursday" @disabled={{this.disabled}} />
-                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day5}} @onChange={{action (mut this.selectedSchedule.day5)}} @label="Friday" @disabled={{this.disabled}} />
-                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day6}} @onChange={{action (mut this.selectedSchedule.day6)}} @label="Saturday" @disabled={{this.disabled}} />
-                <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day0}} @onChange={{action (mut this.selectedSchedule.day0)}} @label="Sunday" @disabled={{this.disabled}} />
-            </div>
+                <table>
+  <tr>
+    <th><CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day1}} @onChange={{action (mut this.selectedSchedule.day1)}} @label="Monday" @disabled={{this.disabled}} /></th>
+               <th><CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day2}} @onChange={{action (mut this.selectedSchedule.day2)}} @label="Tuesday" @disabled={{this.disabled}} /></th> 
+              <th><CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day3}} @onChange={{action (mut this.selectedSchedule.day3)}} @label="Wednesday" @disabled={{this.disabled}} /></th>
+              <th>  <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day4}} @onChange={{action (mut this.selectedSchedule.day4)}} @label="Thursday" @disabled={{this.disabled}} /></th>
+               <th> <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day5}} @onChange={{action (mut this.selectedSchedule.day5)}} @label="Friday" @disabled={{this.disabled}} /></th>
+              <th>  <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day6}} @onChange={{action (mut this.selectedSchedule.day6)}} @label="Saturday" @disabled={{this.disabled}} /></th>
+               <th> <CustomFormComponent @componentType="checkbox" @value={{readonly this.selectedSchedule.day0}} @onChange={{action (mut this.selectedSchedule.day0)}} @label="Sunday" @disabled={{this.disabled}} /></th>
+           
+             </tr>
+                </table> </div>
         </div>
 
         {{#if (is-equal this.selectedSchedule.type 1)}}

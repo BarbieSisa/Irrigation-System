@@ -12,7 +12,7 @@
             @placeHolder="Search" 
             @onChange={{action 'makeRequestOnFieldChange'}}/>
         </div>
-        <div class="autocomplete-list-big">
+        <div class="autocomplete-list-big background-transparency">
             <ul>
                 {{#each this.loadedItems as |party index|}}
                     <Facilities::Users::Popup::ListItemComponent 

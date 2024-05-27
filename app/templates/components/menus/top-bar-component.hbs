@@ -2,10 +2,27 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="container-fluid">
+    <div class="container-fluid background-transparency">
         <a class="navbar-brand" {{action this.onGoto 'home.index'}}>Home</a>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="collapse navbar-collapse background-transparency" id="navbarCollapse">
             <ul class="navbar-nav ms-auto">
+                    {{#unless this.currentUser.isCustomer}}
+                        <li class="nav-item">
+                            <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.users') 'selected'}}" {{action this.onGoto 'home.users.index'}}>
+                                Users
+                            </a>
+                        </li>
+                    {{/unless}}
+                    <li class="nav-item">
+                        <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.facilities') 'selected'}}" {{action this.onGoto 'home.facilities.index'}}>
+                            Facilities
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.devices') 'selected'}}" {{action this.onGoto 'home.devices.index'}}>
+                            Devices
+                        </a>
+                    </li>                
                 <li class="nav-item" {{action 'gotoMyProfile'}}>
                     <a class="nav-link btn">
                         {{this.currentUser.loggedUser.party.person.fullName}} 

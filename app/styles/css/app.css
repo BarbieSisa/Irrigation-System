@@ -1,6 +1,6 @@
 @import "ember-modal-dialog/ember-modal-structure.css";
 @import "ember-modal-dialog/ember-modal-appearance.css";
-
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap);
 :root {
   --compact-content-width: 1440px;
   --sbs: 200px;
@@ -115,12 +115,35 @@
   --bs-info-text-emphasis: #31708f;
 
 }
+table {font-family: arial, sans-serif;
+left: 12px;
+border-collapse: collapse;
+width: 97.5%;
+}
 
+td, th {
+border: 1px solid #ecebeb;
+text-align: center;
+
+padding: 8px;
+background-color: #a3a3a30e;
+}
+
+tr:nth-child(even) {
+
+}
 body {
   padding-top: 56px;
   /* Height of the fixed-top navbar */
+  height: 957px;
+  background-image: linear-gradient(to bottom left , white, white, white, rgb(0, 183, 255), rgb(54, 156, 252));
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
+.base-font{
+  font-family: AudreyTatum;
+  src: url(C:\Users\yani\Downloads\audrey_tatum\audrey_tatum.otf);
+}
 @media (min-width: 768px) {
   body {
     padding-top: 56px;
@@ -133,13 +156,55 @@ body {
   }
 }
 
+/* CSS for sidebar animation */
+#sidebar {
+  transition: all 0.3s ease; /* Add transition effect to all properties with ease timing */
+  transform: translateX(-100%);
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.bottom {
+  top: 1500px;
+}
+.sidebar-open {
+  transform: translateX(0);
+}
+.background-transparent {
+  background-color: transparent;
+  background: transparent;
+}
+
 .center-container {
   position: absolute;
-  top: 50%;
+  top: 57%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
+.img-heading{
+  position: absolute;
+  width: 210px; /* Set the desired width */
+  display: block; /* Make it a block element to center it */
+  margin-top: 1.5%; 
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  
+}
+.base-font-heading {
+  font-family: AudreyTatum;
+  src: url(C:\Users\yani\Downloads\audrey_tatum\audrey_tatum.otf);
+  font-size: 28px; /* Adjust icon size as needed */
+  margin-bottom: 10px; /* Adjust bottom margin as needed */
+  position: absolute;
+
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .nav-link.selected {
   background-color: #212529;
   /* Set your desired background color */
@@ -329,8 +394,8 @@ body {
   color: #2698b5;
 }
 
-.txt-orange {
-  color: #e44e0c;
+.txt-super-user {
+  color: #ff0256;
 }
 
 .txt-yellow {
@@ -349,8 +414,8 @@ body {
   color: #999999;
 }
 
-.txt-cold-gray {
-  color: #8DAEBE;
+.txt-basic-user {
+  color: #00c6f8;
 }
 
 .txt-white {
@@ -385,9 +450,9 @@ body {
   color: #2CB7D5;
 }
 
-.txt-label.inverted.txt-orange {
-  border-color: #F27100;
-  color: #F27100;
+.txt-label.inverted.txt-super-user {
+  border-color: #ff0256;
+  color: #ff0256;
 }
 
 .txt-label.inverted.txt-yellow {
@@ -400,9 +465,9 @@ body {
   color: #666666;
 }
 
-.txt-label.inverted.txt-cold-gray {
-  border-color: #8DAEBE;
-  color: #8DAEBE;
+.txt-label.inverted.txt-basic-user {
+  border-color: #00c6f8;
+  color: #00c6f8;
 }
 
 .txt-bold {
@@ -534,6 +599,17 @@ body {
 
 .mt-03 {
   margin-top: 3px !important;
+}
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #ef3a81; /* Pink background color */
+  --bs-btn-border-color: #ef3a81; /* Pink border color */
+  --bs-btn-hover-bg: #ff5ca1; /* Darker pink on hover */
+  --bs-btn-active-bg: #ff4d91; /* Even darker pink on active */
+}
+
+.btn-primary:hover {
+  background-color: rgb(252, 196, 224); /* Change background color on hover */
 }
 
 .mt-5,

@@ -12,9 +12,9 @@ export default class RoleTypeModel extends BaseModel {
     if (this.get('roleTypeCode') == this.roleTypes.USER_ROLE_ADMIN) {
       return 'txt-red';
     } else if (this.get('roleTypeCode') == this.roleTypes.USER_ROLE_SUPER_USER) {
-      return 'txt-orange';
+      return 'txt-super-user';
     } else if (this.get('roleTypeCode') == this.roleTypes.USER_ROLE_CUSTOMER) {
-      return 'txt-cold-gray';
+      return 'txt-basic-user';
     }
     return null;
   }

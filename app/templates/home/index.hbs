@@ -1,1 +1,159 @@
-<h2>Demo project</h2>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js">
+var textWrapper = document.querySelector('.ml1 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml1 .letter',
+    scale: [0.3,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 600,
+    delay: (el, i) => 70 * (i+1)
+  }).add({
+    targets: '.ml1 .line',
+    scaleX: [0,1],
+    opacity: [0.5,1],
+    easing: "easeOutExpo",
+    duration: 700,
+    offset: '-=875',
+    delay: (el, i, l) => 80 * (l - i)
+  }).add({
+    targets: '.ml1',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+  </script>
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+section {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    height: 750px;
+    width: 1175px;
+    top: 1300px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+h2 {
+    color: #333;
+    margin: 32px 0; /* 2rem = 32px */
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.content-block {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    width: 100%;
+    margin: 16px 0; /* 1rem = 16px */
+    padding: 16px; /* 1rem = 16px */
+    background-color: #ffffff00;
+    border-color: #f8f8f842;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.content-block1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 16px 0; /* 1rem = 16px */
+    padding: 16px; /* 1rem = 16px */
+    background-color: #ffffff00;
+
+}
+.content-block:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.content-block img {
+    top: 10px;
+    max-width: 45%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.content-block p {
+    width: 50%;
+    margin: 0 16px; /* 1rem = 16px */
+    font-size: 16px; /* 1rem = 16px */
+    color: #555;
+}
+.ml1 {
+  font-weight: 900;
+  font-size: 3.5em;
+}
+
+.ml1 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.ml1 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml1 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+  transform-origin: 0 0;
+}
+
+.ml1 .line1 { top: 0; }
+.ml1 .line2 { bottom: 0; }
+    </style>
+
+<section>
+
+   
+    <div class="container">
+                </div>
+        <div class="content-block1">
+         
+ <h2></h2>
+ <h1 class="ml1">
+  <span class="text-wrapper">
+    <span class="line line1"></span>
+    <span class="letters">Welcome to    Remote Irrigation Management System!</span>
+    <span class="line line2"></span>
+  </span>
+</h1>
+        </div>
+        <div class="content-block">
+            <p><b>The Remote Irrigation Management System for private gardens offers homeowners a convenient way to maintain lush, healthy gardens. Using smart sensors and IoT technology, the system monitors soil moisture and weather conditions in real-time, automatically adjusting irrigation to ensure optimal water usage. Homeowners can control and customize watering schedules through a user-friendly app, making garden care effortless and efficient while promoting water conservation.</b></p>
+               <img src="/assets/images/logo2.png
+	"  alt="GOSHO Controller Image 1">
+
+
+    </div>
+</section>
+

@@ -5,3 +5,4 @@ export default class UserRoleModel extends BaseModel {
   @belongsTo('user', { async: true, inverse: "userRoles" }) user;
   @belongsTo('role-type', { async: true, inverse: null }) roleType;
 }
+

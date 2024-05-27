@@ -1,16 +1,19 @@
 {{#in-element this.currentUser.wormholeContainerElement}}
     <header class="fixed-filter">
-        <div style="display: flex;">
+        <style>
+
+</style>
+        <div class="background-transparency" style="display: flex;">
             <h3>View Device - {{this.model.deviceNameAndSerialNumber}}</h3>
             <div style="margin-left: auto;">
                 {{#if (is-equal this.mode "EDIT")}}
                     <button type="button" class="btn btn-success" {{action 'save'}}>Save</button>
-                    <button type="button" class="ml-10 btn btn-warning" {{action 'cancel'}}>Cancel</button>
+                    <button type="button" class="ml-10 btn btn-outline-info" {{action 'cancel'}}>Cancel</button>
                 {{else}}
                     <button type="button" class="ml-10 btn btn-primary" {{action 'edit'}}>Edit</button>
                     <button type="button" class="ml-10 btn btn-primary" {{action 'reload'}}>Refresh</button>
                 {{/if}}
-                <button type="button" class="ml-10 btn btn-danger" {{action 'deleteDevice'}}>Delete</button>
+                <button type="button" class="ml-10 btn btn btn-outline-danger" {{action 'deleteDevice'}}>Delete</button>
             </div>
         </div>
     </header>

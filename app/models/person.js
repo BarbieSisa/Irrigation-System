@@ -3,7 +3,6 @@ import BaseModel from 'irrigation-system/base-elements/base-model';
 import { computed } from '@ember/object';
 export default class PersonModel extends BaseModel { 
   @attr('number') personId;
-  @attr('number') contactId;
   @attr('string') firstName;
   @attr('string') lastName;
 

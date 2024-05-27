@@ -1,32 +1,4 @@
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-            <div class="position-sticky">
-                <ul class="nav flex-column">
-                    {{#unless this.currentUser.isCustomer}}
-                        <li class="nav-item">
-                            <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.users') 'selected'}}" {{action this.onGoto 'home.users.index'}}>
-                                Users
-                            </a>
-                        </li>
-                    {{/unless}}
-                    <li class="nav-item">
-                        <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.facilities') 'selected'}}" {{action this.onGoto 'home.facilities.index'}}>
-                            Facilities
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active {{if (index-of this.activeRouteTracker.activeRouteName 'home.devices') 'selected'}}" {{action this.onGoto 'home.devices.index'}}>
-                            Devices
-                        </a>
-                    </li>
-                    <!-- Add more sidebar items as needed -->
-                </ul>
-            </div>
-        </nav>
+
 
         <!-- Main Content -->
         {{yield}}
-    </div>
-</div>

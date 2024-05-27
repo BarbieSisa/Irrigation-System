@@ -1,5 +1,5 @@
 <section class="mt-40">
-    <div style="display: flex;">
+    <div class="background-transparency" style="display: flex;">
         <h4>
             Users with access in {{this.model.facilityName}}
             {{#if this.loadedItems.length}}
@@ -8,7 +8,7 @@
         </h4>
         <div class="mb-05 mr-10" style="margin-left: auto;">
             {{#unless this.currentUser.isCustomer}}
-                <button type="button" class="btn btn-block btn-success" {{action (mut this.showModal) true}}>Grant access</button>
+                <button type="button" class="btn btn-block btn btn-outline-dark" {{action (mut this.showModal) true}}>Grant access</button>
             {{/unless}}
             <button type="button" class="ml-10 btn btn-primary" {{action 'refresh'}}>Refresh</button>
         </div>

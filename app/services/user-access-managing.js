@@ -18,7 +18,9 @@ export default class UserAccessManagingService extends Service {
     partyId,
     facilityId,
     grantFacAccess
-  }) {
+  })
+  
+  {
     try {
       if (partyId == null || facilityId == null || grantFacAccess == null) {
         throw "INVALID_ARGUMENTS";

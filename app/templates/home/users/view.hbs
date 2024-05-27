@@ -1,8 +1,8 @@
 {{#in-element this.currentUser.wormholeContainerElement}}
-    <header class="fixed-filter">
-        <div style="display: flex">
+    <header class="fixed-filter background-transparent">
+        <div class="background-transparent" style="display: flex">
             <h3>View User - {{if (is-equal this.currentUser.loggedUser.party.partyId this.model.partyId) "My profile" this.model.person.fullName}}</h3>
-            <div class="mb-05 mr-10" style="margin-left: auto;">
+            <div class="mb-05 mr-10 background-transparent" style="margin-left: auto;">
                 <button type="button" class="btn btn-primary" {{action 'edit' this.model.partyId}}>Edit</button>
                 <button type="button" class="ml-10 btn btn-danger" {{action 'deleteUser'}}>Delete</button>
             </div>

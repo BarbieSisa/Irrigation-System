@@ -1,34 +1,52 @@
-	<main>
-  	  <section class="login-main-content">
-  	    <div class="container center-container login-container">
+
+  
+
+  	<main>
+		
+		<div class="base-font-heading "><b>Welcome to Remote Irrigation Managment System! </b>
+			
+		</div>
+
+  	  <section class="login-main-content bottom">
+		
+  	    <div class="container center-container login-container bottom">
   	      <div class="row justify-content-center">
+			
   	        <div class="col-md-6">
+				
   	          <div class="card">
-  	            <div class="card-header">
-  	              Login
-  	            </div>
+				
+  	           <div class="card-header base-font" style="color: rgb(247, 241, 241); background-color: rgb(71, 70, 70);"   >
+ <b>Login</b> 
+</div>
+
   	            <div class="card-body">
   	              <form class="form-signin" role="form" data-bs-toggle="validator">
-  	                <div class="form-group">
-  	                  <label for="username">Username:</label>
-  	                  <Input @type="email" @value={{this.email}} class="form-control" required="true" autofocus=""
+  	                <div class="form-group base-font">
+  	                  <label class="base-font" for="username base-font"><b>Email:</b></label>
+  	                  <Input @type="email" @value={{this.email}} class="form-control " required="true" autofocus=""
   	                    id="email" disabled={{this.isBusy}} placeholder="Enter email" name="email" />
   	                  <div class="invalid-feedback">Field is required</div>
   	                </div>
-  	                <div class="form-group">
-  	                  <label for="password">Password:</label>
+  	                <div class="form-group base-font">
+  	                  <label class="base-font" for="password"><b>Password:</b></label>
   	                  <Input @type={{if this.showPassword "text" "password"}} @value={{mut this.password}}
   	                    class="form-control" required="true" autofocus="" id="pwd" disabled={{this.isBusy}}
   	                    placeholder="Enter password" name="pwd" />
   	                  <div class="invalid-feedback">Field is required</div>
   	                </div>
-  	                <div style="margin-top:20px" class="btn btn-primary"
+  	                <div style="margin-top:20px" class="btn btn-primary pink-button"
   	                  onclick={{unless this.session.isAuthenticated (action "login")}}>Login</div>
   	              </form>
+				  
   	            </div>
+			
   	          </div>
   	        </div>
   	      </div>
+		  
   	    </div>
+			<div>	<img class="img-heading " src="/assets/images/logo2.png
+	" alt="" width="150px"></div>
   	  </section>
   	</main>
